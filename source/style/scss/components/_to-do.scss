@@ -1,0 +1,16 @@
+.board{
+    &__to-do{
+        width: 100%;
+        max-width: 300px;
+    }
+    &__to-do-title{
+        @include label(1rem, $light-grey, .7em);
+        margin-right: 1em;
+    }
+    &__to-do-counter{
+        @extend .board__to-do-title;
+        width: max-content;
+        margin-right: auto;
+        text-align: center;
+    }
+}

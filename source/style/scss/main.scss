@@ -1,0 +1,11 @@
+@import './config/normalize';
+@import './config/variables';
+@import './config/mixins';
+@import './config/fonts';
+@import './config/base-layout';
+@import './config/animation';
+
+@import './components/header';
+@import './components/main';
+@import './components/to-do';
+@import './components/add-card-modal';
