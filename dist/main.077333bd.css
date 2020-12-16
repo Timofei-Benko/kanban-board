@@ -433,7 +433,7 @@ body {
 
 .board {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -451,12 +451,17 @@ body {
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
+  padding: .5em;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 2px #d1d4d6, -1px -1px 2px #d1d4d6;
 }
 
 .board__clear-btn {
   width: 36px;
   border: none;
+  background: transparent;
 }
 
 .board__clear-btn:focus,
@@ -473,6 +478,42 @@ body {
 .board__clear-btn svg:hover {
   fill: #686877;
   cursor: pointer;
+}
+
+.board__add-new-btn {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #686877;
+  border-radius: 10px;
+  font-family: 'SF Pro Displkay Medium';
+  transition: all .1s ease-in-out;
+}
+
+.board__add-new-btn:hover, .board__add-new-btn:focus {
+  background-color: #d8d5d5;
+  outline: none;
+  cursor: pointer;
+}
+
+.board__to-do {
+  width: 100%;
+  max-width: 300px;
+}
+
+.board__to-do-title, .board__to-do-counter {
+  font-family: 'SF Pro Displkay Medium';
+  font-size: 1rem;
+  background-color: #d1d4d6;
+  border-radius: 10px;
+  padding: 0.7em;
+  width: max-content;
+  margin-right: 1em;
+}
+
+.board__to-do-counter {
+  width: max-content;
+  margin-right: auto;
+  text-align: center;
 }
 
 .board__card {
@@ -540,42 +581,6 @@ body {
 .board__card-move-btn svg:focus {
   fill: #686877;
   cursor: pointer;
-}
-
-.board__add-new-btn {
-  width: 100%;
-  height: 50px;
-  border: 1px solid #686877;
-  border-radius: 10px;
-  font-family: 'SF Pro Displkay Medium';
-  transition: all .1s ease-in-out;
-}
-
-.board__add-new-btn:hover, .board__add-new-btn:focus {
-  background-color: #d8d5d5;
-  outline: none;
-  cursor: pointer;
-}
-
-.board__to-do {
-  width: 100%;
-  max-width: 300px;
-}
-
-.board__to-do-title, .board__to-do-counter {
-  font-family: 'SF Pro Displkay Medium';
-  font-size: 1rem;
-  background-color: #d1d4d6;
-  border-radius: 10px;
-  padding: 0.7em;
-  width: max-content;
-  margin-right: 1em;
-}
-
-.board__to-do-counter {
-  width: max-content;
-  margin-right: auto;
-  text-align: center;
 }
 
 .add-card-modal {
@@ -687,6 +692,119 @@ body {
 }
 
 .add-card-modal__save-btn:hover, .add-card-modal__save-btn:focus {
+  outline: none;
+  background-color: #b4dfd0;
+}
+
+.edit-card-modal {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 10vh;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  animation-name: fadeIn;
+  transition: all 0.2s ease-in-out;
+}
+
+.edit-card-modal.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.edit-card-modal__content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  max-width: 500px;
+  background-color: #FFFFFF;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #686877;
+  border-radius: 10px;
+  width: 90%;
+}
+
+.edit-card-modal__close-btn {
+  display: block;
+  align-self: flex-end;
+  color: #686877;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.edit-card-modal__close-btn:hover, .edit-card-modal__close-btn:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.edit-card-modal__input-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+}
+
+.edit-card-modal__title-input {
+  width: 100%;
+  font-size: 1.2rem;
+  font-family: 'SF Pro Displkay Medium';
+  color: #212121;
+  border: none;
+  outline: none;
+}
+
+.edit-card-modal__title-input::placeholder {
+  color: #686877;
+}
+
+.edit-card-modal__description-input {
+  width: 100%;
+  padding: 5px;
+  margin-top: 10px;
+  font-size: 1rem;
+  font-family: 'SF Pro Displkay Regular';
+  color: #212121;
+  border: 1px solid #686877;
+  border-radius: 5px;
+  outline: none;
+  resize: vertical;
+}
+
+.edit-card-modal__description-input::placeholder {
+  color: #686877;
+}
+
+.edit-card-modal__save-btn {
+  width: 30%;
+  padding: 5px;
+  font-family: 'SF Pro Displkay Medium';
+  font-size: 1rem;
+  background-color: #CBDFD8;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  margin-top: 10px;
+}
+
+.edit-card-modal__save-btn:hover, .edit-card-modal__save-btn:focus {
   outline: none;
   background-color: #b4dfd0;
 }
