@@ -30,7 +30,7 @@
                               </svg>                              
                         </button>
                     </div>
-                    <div class="board__cards-container board__to-do-cards-container">
+                    <div class="board__cards-container" data-column="toDo">
                         <!-- <div class="board__card" data-card="card">
                             <h3 class="board__card-title">Lorem Ipsum</h3>
                             <p class="board__card-copy">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, est?
@@ -54,13 +54,23 @@
             <div class="add-card-modal">
                 <div class="add-card-modal__content">
                     <span class="add-card-modal__close-btn">&times;</span>
-                    <input type="text" maxlength="24" placeholder="Enter card title" class="add-card-modal__title-input">
+                    <input class="add-card-modal__title-input" data-input_type="title" type="text" maxlength="24" placeholder="Enter card title">
                     <span class="error-message">The field must not be empty</span>
-                    <textarea class="add-card-modal__description-input" name="" rows="10" maxlength="1000" placeholder="Enter card description"></textarea>
+                    <textarea class="add-card-modal__description-input" data-input_type="description" name="" rows="10" maxlength="1000" placeholder="Enter card description"></textarea>
                     <span class="error-message">The field must not be empty</span>
                     <button class="add-card-modal__save-btn">Save</button>
                 </div>
-              </div>
+            </div>
+            <div class="edit-card-modal">
+                <div class="edit-card-modal__content">
+                    <span class="edit-card-modal__close-btn">&times;</span>
+                    <input type="text" maxlength="24" placeholder="Enter card title" class="edit-card-modal__title-input">
+                    <span class="error-message">The field must not be empty</span>
+                    <textarea class="edit-card-modal__description-input" name="" rows="10" maxlength="1000" placeholder="Enter card description"></textarea>
+                    <span class="error-message">The field must not be empty</span>
+                    <button class="edit-card-modal__save-btn">Save</button>
+                </div>
+            </div>
         </main>
     </div>
 </body>
