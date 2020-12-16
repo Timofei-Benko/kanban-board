@@ -24,7 +24,7 @@
         background-color: #FFFFFF;
         margin: auto;
         padding: 1rem;
-        border: 1px solid $grey;
+        border: 1px solid $colorGray;
         border-radius: 10px;
         width: 90%;
     }
@@ -32,7 +32,7 @@
     &__close-btn {
         display: block;
         align-self: flex-end;
-        color: $grey;
+        color: $colorGray;
         font-size: 2rem;
         font-weight: bold;
 
@@ -52,12 +52,12 @@
         width: 100%;
         font-size: 1.2rem;
         font-family: 'SF Pro Displkay Medium';
-        color: $dark-grey;
+        color: $colorGrayDark;
         border: none;
         outline: none;
 
         &::placeholder {
-            color: $grey;
+            color: $colorGray;
         }
     }
 
@@ -68,19 +68,19 @@
 
         font-size: 1rem;
         font-family: 'SF Pro Displkay Regular';
-        color: $dark-grey;
-        border: 1px solid $grey;
+        color: $colorGrayDark;
+        border: 1px solid $colorGray;
         border-radius: 5px;
         outline: none;
         resize: vertical;
 
         &::placeholder {
-            color: $grey;
+            color: $colorGray;
         }
     }
 
     &__save-btn {
-       @include btn(30%, 5px, $green, #b4dfd0);
+       @include btn(30%, 5px, $colorGreen, #b4dfd0);
        margin-top: 10px;
     }
 }

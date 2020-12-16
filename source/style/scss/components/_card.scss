@@ -1,0 +1,53 @@
+.board{
+    &__card{
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 1px 1px 2px $colorGrayLight, -1px -1px 2px $colorGrayLight;
+        cursor: pointer;
+    }
+    &__card-title{
+        font-family: 'SF Pro Displkay Medium';
+        color: $colorGrayDark;
+    }
+    &__card-copy{
+        width: 100%;
+        margin: 10px 0;
+        color: $colorGray;
+        line-height: 1.3em;
+    }
+    &__card-footer{
+        @include flexible(space-between, flex-start, row, nowrap);
+        height: 20px;
+    } 
+    &__card-date{
+        @include label(0.8rem, $colorYellow, 5px);
+        width: 70%;
+    }
+    &__card-remove-btn,
+    &__card-move-btn{
+        width: 15%;
+        background: transparent;
+        border: none;
+
+        &:hover,
+        &:focus{
+            outline: none;
+        }
+    }
+    &__card-remove-btn svg,
+    &__card-move-btn svg{
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        fill: #d8d5d5;
+        transition: all .1s ease-in-out;
+        &:hover,
+        &:focus {
+            fill: $colorGray;
+            cursor: pointer;
+        }
+    }
+}

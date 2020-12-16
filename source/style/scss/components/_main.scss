@@ -1,5 +1,5 @@
 .board{
-    @include flexible(space-between, flex-start, row, nowrap);
+    @include flexible(center, flex-start, row, nowrap);
     width: 100%;
     height: 75vh;
     padding: 1em;
@@ -8,80 +8,34 @@
     overflow-y: scroll;
     &__header{
         @include flexible(space-between, center, row, nowrap);
-        margin-bottom: 2em;
+        margin-bottom: 1em;
+        padding: .5em;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 1px 1px 2px $colorGrayLight, -1px -1px 2px $colorGrayLight;
     }
     &__clear-btn{
         width: 36px;
         border: none;
+        background: transparent;
         &:focus,
-        &:focus svg{ // in order for the btn to able to focus on tab key press
+        &:focus svg{ // in order for the btn to able to focus on 'tab' key press
             outline: none;
-            fill: $grey;
+            fill: $colorGray;
         }
         & svg{
             fill: #a8a6a6;
             transition: all .2s ease-in-out;
             &:hover{
-                fill: $grey;
+                fill: $colorGray;
                 cursor: pointer;
             }
-        }
-    }
-    &__card{
-        width: 100%;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 1px 1px 2px $light-grey, -1px -1px 2px $light-grey;
-        cursor: pointer;
-    }
-    &__card-title{
-        font-family: 'SF Pro Displkay Medium';
-        color: $dark-grey;
-    }
-    &__card-copy{
-        width: 100%;
-        margin: 10px 0;
-        color: $grey;
-        line-height: 1.3em;
-    }
-    &__card-footer{
-        @include flexible(space-between, flex-start, row, nowrap);
-        height: 20px;
-    } 
-    &__card-date{
-        @include label(0.8rem, #e8f389, 5px);
-        width: 70%;
-    }
-    &__card-remove-btn,
-    &__card-move-btn{
-        width: 15%;
-        background: transparent;
-        border: none;
-
-        &:hover,
-        &:focus{
-            outline: none;
-        }
-    }
-    &__card-remove-btn svg,
-    &__card-move-btn svg{
-        width: 20px;
-        height: 20px;
-        margin-top: 2px;
-        fill: #d8d5d5;
-        transition: all .1s ease-in-out;
-        &:hover,
-        &:focus {
-            fill: $grey;
-            cursor: pointer;
         }
     }
     &__add-new-btn{
         width: 100%;
         height: 50px;
-        border: 1px solid $grey;
+        border: 1px solid $colorGray;
         border-radius: 10px;
         font-family: 'SF Pro Displkay Medium';
         transition: all .1s ease-in-out;
