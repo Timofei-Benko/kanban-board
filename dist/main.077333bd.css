@@ -516,6 +516,28 @@ body {
   text-align: center;
 }
 
+.board__in-progress {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 2em;
+}
+
+.board__in-progress-title, .board__in-progress-counter {
+  font-family: 'SF Pro Displkay Medium';
+  font-size: 1rem;
+  background-color: #e7d5f3;
+  border-radius: 10px;
+  padding: 0.7em;
+  width: max-content;
+  margin-right: 1em;
+}
+
+.board__in-progress-counter {
+  width: max-content;
+  margin-right: auto;
+  text-align: center;
+}
+
 .board__card {
   width: 100%;
   padding: 1rem;
@@ -651,7 +673,7 @@ body {
 .add-card-modal__title-input {
   width: 100%;
   font-size: 1.2rem;
-  font-family: 'SF Pro Displkay Medium';
+  font-family: 'SF Pro Displkay Medium', sans-serif;
   color: #212121;
   border: none;
   outline: none;
@@ -666,7 +688,7 @@ body {
   padding: 5px;
   margin-top: 10px;
   font-size: 1rem;
-  font-family: 'SF Pro Displkay Regular';
+  font-family: 'SF Pro Displkay Regular', sans-serif;
   color: #212121;
   border: 1px solid #686877;
   border-radius: 5px;

@@ -15,11 +15,11 @@
             <p class="header__subtitle">A board to keep track of your tasks</p>
         </header>
         <main class="board">
-            <section class="board__to-do">
+            <section class="board__to-do" data-column="toDo">
                     <div class="board__header">
                         <h2 class="board__to-do-title">To do</h2>
-                        <div class="board__to-do-counter">0</div>
-                        <button class="board__clear-btn">
+                        <div class="board__to-do-counter" data-counter="toDo">0</div>
+                        <button class="board__clear-btn" data-column="toDo">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 0 427 427.001">
                                 <defs></defs>
                                 <path d="M232.398 154.703c-5.523 0-10 4.477-10 10v189c0 5.52 4.477 10 10 10 5.524 0 10-4.48 10-10v-189c0-5.523-4.476-10-10-10zm0 0M114.398 154.703c-5.523 0-10 4.477-10 10v189c0 5.52 4.477 10 10 10 5.524 0 10-4.48 10-10v-189c0-5.523-4.476-10-10-10zm0 0"></path>
@@ -32,11 +32,11 @@
                     </div>
                 <button class="board__add-new-btn">+ Add new</button>
             </section>
-            <section class="board__in-progress">
+            <section class="board__in-progress" data-column="inProgress">
                 <div class="board__header">
-                    <h2 class="board__in-progress-title">To do</h2>
-                    <div class="board__in-progress-counter">0</div>
-                    <button class="board__clear-btn">
+                    <h2 class="board__in-progress-title">In progress</h2>
+                    <div class="board__in-progress-counter" data-counter="inProgress">0</div>
+                    <button class="board__clear-btn" data-column="inProgress">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 0 427 427.001">
                             <defs></defs>
                             <path d="M232.398 154.703c-5.523 0-10 4.477-10 10v189c0 5.52 4.477 10 10 10 5.524 0 10-4.48 10-10v-189c0-5.523-4.476-10-10-10zm0 0M114.398 154.703c-5.523 0-10 4.477-10 10v189c0 5.52 4.477 10 10 10 5.524 0 10-4.48 10-10v-189c0-5.523-4.476-10-10-10zm0 0"></path>
@@ -45,9 +45,8 @@
                           </svg>                              
                     </button>
                 </div>
-                <div class="board__cards-container" data-column="toDo">
+                <div class="board__cards-container" data-column="inProgress">
                 </div>
-            <button class="board__add-new-btn">+ Add new</button>
         </section>
         <div class="add-card-modal">
                 <div class="add-card-modal__content">

@@ -375,81 +375,202 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   window.$clamp = clamp;
 })();
-},{}],"js/svgVariables.js":[function(require,module,exports) {
+},{}],"js/variables.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.svgIcons = void 0;
+exports.variables = void 0;
 var removeIcon = '<svg height="511.99998pt" viewBox="1 1 511.99998 511.99998" width="511.99998pt" xmlns="http://www.w3.org/2000/svg"><path d="m256 0c-141.386719 0-256 114.613281-256 256s114.613281 256 256 256 256-114.613281 256-256c-.167969-141.316406-114.683594-255.832031-256-256zm0 480c-123.710938 0-224-100.289062-224-224s100.289062-224 224-224 224 100.289062 224 224c-.132812 123.65625-100.34375 223.867188-224 224zm0 0"/><path d="m380.449219 131.550781c-6.25-6.246093-16.378907-6.246093-22.625 0l-101.824219 101.824219-101.824219-101.824219c-6.140625-6.355469-16.269531-6.53125-22.625-.390625-6.355469 6.136719-6.53125 16.265625-.390625 22.621094.128906.132812.257813.265625.390625.394531l101.824219 101.824219-101.824219 101.824219c-6.355469 6.136719-6.53125 16.265625-.390625 22.625 6.136719 6.355469 16.265625 6.53125 22.621094.390625.132812-.128906.265625-.257813.394531-.390625l101.824219-101.824219 101.824219 101.824219c6.355469 6.136719 16.484375 5.960937 22.621093-.394531 5.988282-6.199219 5.988282-16.03125 0-22.230469l-101.820312-101.824219 101.824219-101.824219c6.246093-6.246093 6.246093-16.375 0-22.625zm0 0"/></svg>';
-var moveIcon = "<svg version=\"1.1\" id=\"move-right\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\nwidth=\"612px\" height=\"612px\" viewBox=\"0 0 612 612\" style=\"enable-background:new 0 0 612 612;\" xml:space=\"preserve\">\n<g>\n<g id=\"_x35__2_\">\n   <g>\n       <path d=\"M431.001,289.189l-108.19-108.19c-7.478-7.478-19.583-7.478-27.042,0c-7.478,7.478-7.478,19.584,0,27.043l78.814,78.833\n           H172.125C161.568,286.875,153,295.443,153,306c0,10.557,8.568,19.125,19.125,19.125h202.457l-78.814,78.814\n           c-7.478,7.478-7.478,19.584,0,27.042c7.478,7.479,19.584,7.479,27.042,0l108.19-108.189c4.59-4.59,6.005-10.863,4.973-16.811\n           C437.006,300.071,435.572,293.779,431.001,289.189z M306,0C136.992,0,0,136.992,0,306s136.992,306,306,306s306-137.012,306-306\n           S475.008,0,306,0z M306,573.75C158.125,573.75,38.25,453.875,38.25,306C38.25,158.125,158.125,38.25,306,38.25\n           c147.875,0,267.75,119.875,267.75,267.75C573.75,453.875,453.875,573.75,306,573.75z\"/>\n   </g>\n</g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n<g>\n</g>\n</svg>";
-var svgIcons = {
-  remove: removeIcon,
-  move: moveIcon
+var moveIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 612 612\"><defs/>\n<path d=\"M431.001 289.189l-108.19-108.19c-7.478-7.478-19.583-7.478-27.042 0-7.478 7.478-7.478 19.584 0 27.043l78.814 78.833H172.125C161.568 286.875 153 295.443 153 306s8.568 19.125 19.125 19.125h202.457l-78.814 78.814c-7.478 7.478-7.478 19.584 0 27.042 7.478 7.479 19.584 7.479 27.042 0L431 322.792c4.59-4.59 6.005-10.863 4.973-16.811 1.033-5.91-.401-12.202-4.972-16.792zM306 0C136.992 0 0 136.992 0 306s136.992 306 306 306 306-137.012 306-306S475.008 0 306 0zm0 573.75C158.125 573.75 38.25 453.875 38.25 306S158.125 38.25 306 38.25 573.75 158.125 573.75 306 453.875 573.75 306 573.75z\"/>\n</svg>";
+var variables = {
+  removeIcon: removeIcon,
+  moveIcon: moveIcon,
+  getCard: function getCard(cardObject) {
+    return "<div class=\"board__card\" data-card=\"card\" data-card_id=".concat(cardObject.id, ">\n                    <h3 class=\"board__card-title\">").concat(cardObject.title, "</h3>\n                    <p class=\"board__card-copy\">").concat(cardObject.description, "</p>\n                    <div class=\"board__card-footer\">\n                        <p class=\"board__card-date\">").concat(cardObject.date, "</p>\n                        <button class=\"board__card-move-btn\">").concat(this.moveIcon, "</button>\n                        <button class=\"board__card-remove-btn\">").concat(this.removeIcon, "</button>\n                    </div>\n                </div>");
+  }
 };
-exports.svgIcons = svgIcons;
-},{}],"js/cardCounter.js":[function(require,module,exports) {
+exports.variables = variables;
+},{}],"js/methods.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.countCards = void 0;
-var column = document.body.querySelector('div[data-cards="cards-container"]');
-var counterBlock = document.body.querySelector('.board__to-do-counter');
-var counter = column.children.length;
+exports.Methods = void 0;
 
-var countCards = function countCards(column, counterBlock) {
-  column.children ? counter = column.children.length : counter = 0;
-  counterBlock.innerHTML = counter;
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-exports.countCards = countCards;
-countCards(column, counterBlock); // running the function on page load
-// to do: add listener for it
-},{}],"js/clampCardBody.js":[function(require,module,exports) {
-"use strict";
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.clampCardBody = clampCardBody;
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// const cardBody = document.body.querySelector('.board__card-copy')
-// $clamp(cardBody, {clamp: 2})
-function clampCardBody() {
-  var cardBodies = document.body.querySelectorAll('.board__card-copy');
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-  for (var i = 0; i < cardBodies.length; i++) {
-    $clamp(cardBodies[i], {
-      clamp: 2
+var Methods = /*#__PURE__*/function () {
+  function Methods() {
+    _classCallCheck(this, Methods);
+
+    _defineProperty(this, "showErrorMessage", function (input) {
+      return input.nextElementSibling.classList.add('active');
+    });
+
+    _defineProperty(this, "hideErrorMessage", function (input) {
+      return input.nextElementSibling.classList.remove('active');
     });
   }
-}
+
+  _createClass(Methods, [{
+    key: "toggle",
+    value: function toggle(el) {
+      el.classList.toggle('active');
+    }
+  }, {
+    key: "getCards",
+    value: function getCards(column) {
+      if (column === 'toDo') {
+        return document.body.querySelector('div[data-column="toDo"]').querySelectorAll('.board__card');
+      } else if (column === 'inProgress') {
+        return document.body.querySelector('div[data-column="inProgress"]').querySelectorAll('.board__card');
+      } else if (column === 'done') {
+        return document.body.querySelector('div[data-column="done"]').querySelectorAll('.board__card');
+      }
+    }
+  }, {
+    key: "countCards",
+    value: function countCards() {
+      var columns = document.body.querySelectorAll('.board__cards-container[data-column]');
+
+      for (var i = 0; i < columns.length; i++) {
+        var cards = this.getCards(columns[i].dataset.column),
+            counter = document.body.querySelector("div[data-counter=\"".concat(columns[i].dataset.column, "\"]")),
+            cardNumber = void 0;
+        cards ? cardNumber = cards.length : cardNumber = 0;
+        counter.innerHTML = cardNumber;
+      }
+    }
+  }, {
+    key: "deleteCard",
+    value: function deleteCard(card) {
+      var column = event.target.closest('div[data-column]').dataset.column;
+      this.removeFromLocalStorage(column, card.dataset.card_id);
+      card.remove();
+      this.countCards();
+    }
+  }, {
+    key: "deleteAllCards",
+    value: function deleteAllCards(column) {
+      if (column === 'toDo') {
+        var cards = this.getCards('toDo');
+
+        for (var i = 0; i < cards.length; i++) {
+          this.removeFromLocalStorage('toDo', cards[i].dataset.card_id);
+        }
+
+        var cardContainer = document.body.querySelector('div[data-column="toDo"]');
+        cardContainer.innerHTML = '';
+      }
+
+      this.countCards();
+    }
+  }, {
+    key: "clampText",
+    value: function clampText() {
+      var cardBodies = document.body.querySelectorAll('.board__card-copy');
+
+      for (var i = 0; i < cardBodies.length; i++) {
+        $clamp(cardBodies[i], {
+          clamp: 2
+        });
+      }
+
+      ;
+    }
+  }, {
+    key: "clearInput",
+    value: function clearInput(modal) {
+      if (modal) {
+        // else browser will throw an error cause it is unable to run qs on null
+        var inputs = [modal.querySelector('input[data-input_type="title"]'), modal.querySelector('textarea[data-input_type="description"]')];
+        inputs.forEach(function (input) {
+          return input.value = '';
+        });
+      }
+
+      ;
+    }
+  }, {
+    key: "getDate",
+    value: function getDate() {
+      return new Date(Date.now()).toLocaleDateString();
+    }
+  }, {
+    key: "generateID",
+    value: function generateID() {
+      var cardNumber = document.body.querySelectorAll('.board__card').length;
+      return cardNumber ? "c_".concat(cardNumber + 1) : "c_1"; // the card id is the number of already existing cards + 1
+    }
+  }, {
+    key: "putInLocalStorage",
+    value: function putInLocalStorage(cardObject, column) {
+      if (column === 'toDo') {
+        var toDoStorage = JSON.parse(localStorage.getItem('toDo'));
+        toDoStorage.push(cardObject);
+        localStorage.setItem('toDo', JSON.stringify(toDoStorage));
+      }
+    }
+  }, {
+    key: "removeFromLocalStorage",
+    value: function removeFromLocalStorage(column, id) {
+      if (column === 'toDo') {
+        var toDoStorage = JSON.parse(localStorage.getItem('toDo'));
+        toDoStorage.forEach(function (card) {
+          if (card.id === id) {
+            toDoStorage.splice(toDoStorage.indexOf(card), 1);
+          }
+        });
+        localStorage.setItem('toDo', JSON.stringify(toDoStorage));
+      }
+
+      ;
+    }
+  }, {
+    key: "checkIfEmpty",
+    value: function checkIfEmpty() {
+      var isEmpty = false;
+
+      for (var _len = arguments.length, inputs = new Array(_len), _key = 0; _key < _len; _key++) {
+        inputs[_key] = arguments[_key];
+      }
+
+      inputs.forEach(function (input) {
+        if (!input.value) {
+          methods.showErrorMessage(input);
+          return isEmpty = true;
+        }
+      });
+    }
+  }]);
+
+  return Methods;
+}();
+
+exports.Methods = Methods;
+;
+var methods = new Methods();
 },{}],"js/addCard.js":[function(require,module,exports) {
 'use strict'; // Variables
 
-var _svgVariables = require("./svgVariables.js");
+var _variables = require("./variables.js");
 
-var _cardCounter = require("./cardCounter.js");
+var _methods = require("./methods.js");
 
-var _clampCardBody = require("./clampCardBody.js");
-
-var addCardBtn = document.body.querySelector('.board__add-new-btn');
-var toDoColumn = document.body.querySelector('.board__to-do-cards-container');
-var column = document.body.querySelector('div[data-cards="cards-container"]');
-var counterBlock = document.body.querySelector('.board__to-do-counter');
-var modal = document.body.querySelector('.add-card-modal');
-var titleInput = document.body.querySelector('.add-card-modal__title-input');
-var descriptionInput = document.body.querySelector('.add-card-modal__description-input');
-var today = new Date(Date.now());
-var todayFormated = today.toLocaleDateString();
-var card = "<div class=\"board__card\">\n            <h3 class=\"board__card-title\"></h3>\n            <p class=\"board__card-copy\"></p>\n            <p class=\"board__card-date\"></p>\n            </div>"; // Functions
-
-var toggle = function toggle(token) {
-  return token.classList.toggle('active');
-};
+var addCardBtn = document.body.querySelector('.board__add-new-btn'),
+    toDoColumn = document.body.querySelector('div[data-column="toDo"]'),
+    modal = document.body.querySelector('.add-card-modal'),
+    titleInput = document.body.querySelector('.add-card-modal__title-input'),
+    descriptionInput = document.body.querySelector('.add-card-modal__description-input'); // Functions
 
 var showErrorMessage = function showErrorMessage(input) {
   return input.nextElementSibling.classList.add('active');
@@ -459,26 +580,18 @@ var hideErrorMessage = function hideErrorMessage(input) {
   return input.nextElementSibling.classList.remove('active');
 };
 
-var clearInput = function clearInput() {
-  for (var _len = arguments.length, inputs = new Array(_len), _key = 0; _key < _len; _key++) {
-    inputs[_key] = arguments[_key];
-  }
-
-  return inputs.forEach(function (input) {
-    return input.value = '';
-  });
-};
+var methods = new _methods.Methods();
 
 function checkIfEmpty() {
   var isEmpty = false;
 
-  for (var _len2 = arguments.length, inputs = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    inputs[_key2] = arguments[_key2];
+  for (var _len = arguments.length, inputs = new Array(_len), _key = 0; _key < _len; _key++) {
+    inputs[_key] = arguments[_key];
   }
 
   inputs.forEach(function (input) {
     if (!input.value) {
-      showErrorMessage(input);
+      methods.showErrorMessage(input);
       return isEmpty = true;
     }
   });
@@ -488,74 +601,318 @@ function checkIfEmpty() {
 
 
 addCardBtn.addEventListener('click', function () {
-  return toggle(modal);
+  return methods.toggle(modal);
 }); // listens to events in modal window
 
 modal.addEventListener('click', function (event) {
   if (event.target.classList.contains('add-card-modal__close-btn')) {
-    toggle(modal); // closes the modal
+    methods.toggle(modal); // closes the modal
+
+    setTimeout(function () {
+      methods.clearInput(modal);
+    }, 500); // clears inputs so that there are no previously entered values
+    // timeout is needed so that the clearing of values weren't visible during window fade out
   }
 
   if (event.target.classList.contains('add-card-modal__save-btn')) {
     // makes the necessary checks, shows error if empty, else adds a card 
-    if (checkIfEmpty(titleInput, descriptionInput)) {
+    if (!methods.checkIfEmpty(titleInput, descriptionInput)) {
       return;
     } else {
-      var _card = "<div class=\"board__card\">\n                            <h3 class=\"board__card-title\">".concat(titleInput.value, "</h3>\n                            <p class=\"board__card-copy\">").concat(descriptionInput.value, "</p>\n                            <div class=\"board__card-footer\">\n                                <p class=\"board__card-date\">").concat(todayFormated, "</p>\n                                <button class=\"board__card-move-btn\">\n                                    ").concat(_svgVariables.svgIcons.move, "\n                                </button>\n                                <button class=\"board__card-remove-btn\">\n                                    ").concat(_svgVariables.svgIcons.remove, "\n                                </button>\n                            </div>\n                        </div>");
-
-      toDoColumn.innerHTML += _card;
-      clearInput(titleInput, descriptionInput); // clears inputs so that there are no previously entered values
-
-      toggle(modal);
-      (0, _cardCounter.countCards)(column, counterBlock);
-      (0, _clampCardBody.clampCardBody)();
+      var cardObject = {
+        id: methods.generateID(),
+        title: titleInput.value,
+        description: descriptionInput.value,
+        date: methods.getDate()
+      };
+      methods.putInLocalStorage(cardObject, 'toDo');
+      toDoColumn.innerHTML += _variables.variables.getCard(cardObject);
+      setTimeout(function () {
+        return methods.clearInput(modal);
+      }, 500);
+      methods.countCards();
+      methods.clampText();
+      methods.toggle(modal);
     }
   }
 });
 modal.addEventListener('keyup', function (event) {
   // removes error message when user starts to type into the input
   if (event.target.classList.contains('add-card-modal__title-input') || event.target.classList.contains('add-card-modal__description-input')) {
-    hideErrorMessage(event.target);
+    methods.hideErrorMessage(event.target);
   }
 });
-},{"./svgVariables.js":"js/svgVariables.js","./cardCounter.js":"js/cardCounter.js","./clampCardBody.js":"js/clampCardBody.js"}],"js/deleteCards.js":[function(require,module,exports) {
+},{"./variables.js":"js/variables.js","./methods.js":"js/methods.js"}],"js/deleteCards.js":[function(require,module,exports) {
 'use strict';
 
-var _cardCounter = require("./cardCounter.js");
+var _methods = require("./methods.js");
 
-var clearBtn = document.body.querySelector('.board__to-do-clear-btn');
-var counterBlock = document.body.querySelector('.board__to-do-counter');
-var cards = document.body.querySelector('.board__to-do-cards-container');
-clearBtn.addEventListener('click', function () {
-  if (cards) {
-    cards.innerHTML = '';
-    (0, _cardCounter.countCards)(cards, counterBlock);
-  }
-});
-cards.addEventListener('click', function (event) {
-  if (event.target.classList.contains('board__card-remove-btn') || event.target.closest('.board__card-remove-btn')) {
-    var card = event.target.closest('.board__card');
-    card.remove();
-    (0, _cardCounter.countCards)(cards, counterBlock); // recount the amount of cards to display on the counter
-  }
-});
-clearBtn.addEventListener('mouseover', function () {
-  return clearBtn.innerHTML = 'X';
-}); // shows X while mouse is on the button
+var methods = new _methods.Methods();
+var clearBtns = document.body.querySelectorAll('.board__clear-btn svg');
+var cards = document.body.querySelectorAll('div[data-column');
 
-clearBtn.addEventListener('mouseout', function () {
-  return (0, _cardCounter.countCards)(cards, counterBlock);
-}); // turns back to showing the actual number of cards
-},{"./cardCounter.js":"js/cardCounter.js"}],"js/main.js":[function(require,module,exports) {
+for (var i = 0; i < clearBtns.length; i++) {
+  clearBtns[i].addEventListener('click', function (event) {
+    var column = event.target.closest('button[data-column]').dataset.column;
+    methods.deleteAllCards(column);
+  });
+}
+
+;
+
+for (var _i = 0; _i < cards.length; _i++) {
+  cards[_i].addEventListener('click', function (event) {
+    if (event.target.classList.contains('board__card-remove-btn') || event.target.closest('.board__card-remove-btn')) {
+      var card = event.target.closest('.board__card');
+      methods.deleteCard(card);
+    }
+  });
+}
+
+;
+},{"./methods.js":"js/methods.js"}],"js/pageLoad.js":[function(require,module,exports) {
+'use strict';
+
+var _variables = require("./variables.js");
+
+var _methods = require("./methods.js");
+
+var methods = new _methods.Methods();
+window.addEventListener('load', function () {
+  // creates local storage structure on first page load or after LS was cleared
+  // then it renders the cards if there are any
+  if (!localStorage.getItem('toDo')) {
+    localStorage.setItem('toDo', JSON.stringify([]));
+  } else {
+    var toDoStorage = JSON.parse(localStorage.getItem('toDo'));
+    toDoStorage.forEach(function (cardObject) {
+      document.querySelector('div[data-column="toDo"]').innerHTML += _variables.variables.getCard(cardObject);
+    });
+  }
+
+  if (!localStorage.getItem('inProgress')) {
+    localStorage.setItem('inProgress', JSON.stringify([]));
+  }
+
+  if (!localStorage.getItem('done')) {
+    localStorage.setItem('done', JSON.stringify([]));
+  }
+
+  methods.countCards();
+});
+},{"./variables.js":"js/variables.js","./methods.js":"js/methods.js"}],"js/main.js":[function(require,module,exports) {
 'use strict';
 
 require("./clamp.js");
 
 require("./addCard.js");
 
-require("./cardCounter.js");
-
-require("./clampCardBody.js");
-
 require("./deleteCards.js");
-},{"./clamp.js":"js/clamp.js","./addCard.js":"js/addCard.js","./cardCounter.js":"js/cardCounter.js","./clampCardBody.js":"js/clampCardBody.js","./deleteCards.js":"js/deleteCards.js"}]
+
+require("./pageLoad.js");
+},{"./clamp.js":"js/clamp.js","./addCard.js":"js/addCard.js","./deleteCards.js":"js/deleteCards.js","./pageLoad.js":"js/pageLoad.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var global = arguments[3];
+var OVERLAY_ID = '__parcel__error__overlay__';
+var OldModule = module.bundle.Module;
+
+function Module(moduleName) {
+  OldModule.call(this, moduleName);
+  this.hot = {
+    data: module.bundle.hotData,
+    _acceptCallbacks: [],
+    _disposeCallbacks: [],
+    accept: function (fn) {
+      this._acceptCallbacks.push(fn || function () {});
+    },
+    dispose: function (fn) {
+      this._disposeCallbacks.push(fn);
+    }
+  };
+  module.bundle.hotData = null;
+}
+
+module.bundle.Module = Module;
+var checkedAssets, assetsToAccept;
+var parent = module.bundle.parent;
+
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+  var hostname = "" || location.hostname;
+  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61788" + '/');
+
+  ws.onmessage = function (event) {
+    checkedAssets = {};
+    assetsToAccept = [];
+    var data = JSON.parse(event.data);
+
+    if (data.type === 'update') {
+      var handled = false;
+      data.assets.forEach(function (asset) {
+        if (!asset.isNew) {
+          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
+
+          if (didAccept) {
+            handled = true;
+          }
+        }
+      }); // Enable HMR for CSS by default.
+
+      handled = handled || data.assets.every(function (asset) {
+        return asset.type === 'css' && asset.generated.js;
+      });
+
+      if (handled) {
+        console.clear();
+        data.assets.forEach(function (asset) {
+          hmrApply(global.parcelRequire, asset);
+        });
+        assetsToAccept.forEach(function (v) {
+          hmrAcceptRun(v[0], v[1]);
+        });
+      } else if (location.reload) {
+        // `location` global exists in a web worker context but lacks `.reload()` function.
+        location.reload();
+      }
+    }
+
+    if (data.type === 'reload') {
+      ws.close();
+
+      ws.onclose = function () {
+        location.reload();
+      };
+    }
+
+    if (data.type === 'error-resolved') {
+      console.log('[parcel] ✨ Error resolved');
+      removeErrorOverlay();
+    }
+
+    if (data.type === 'error') {
+      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
+      removeErrorOverlay();
+      var overlay = createErrorOverlay(data);
+      document.body.appendChild(overlay);
+    }
+  };
+}
+
+function removeErrorOverlay() {
+  var overlay = document.getElementById(OVERLAY_ID);
+
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+function createErrorOverlay(data) {
+  var overlay = document.createElement('div');
+  overlay.id = OVERLAY_ID; // html encode message and stack trace
+
+  var message = document.createElement('div');
+  var stackTrace = document.createElement('pre');
+  message.innerText = data.error.message;
+  stackTrace.innerText = data.error.stack;
+  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
+  return overlay;
+}
+
+function getParents(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return [];
+  }
+
+  var parents = [];
+  var k, d, dep;
+
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+
+      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
+        parents.push(k);
+      }
+    }
+  }
+
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+
+  return parents;
+}
+
+function hmrApply(bundle, asset) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (modules[asset.id] || !bundle.parent) {
+    var fn = new Function('require', 'module', 'exports', asset.generated.js);
+    asset.isNew = !modules[asset.id];
+    modules[asset.id] = [fn, asset.deps];
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+
+function hmrAcceptCheck(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (!modules[id] && bundle.parent) {
+    return hmrAcceptCheck(bundle.parent, id);
+  }
+
+  if (checkedAssets[id]) {
+    return;
+  }
+
+  checkedAssets[id] = true;
+  var cached = bundle.cache[id];
+  assetsToAccept.push([bundle, id]);
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    return true;
+  }
+
+  return getParents(global.parcelRequire, id).some(function (id) {
+    return hmrAcceptCheck(global.parcelRequire, id);
+  });
+}
+
+function hmrAcceptRun(bundle, id) {
+  var cached = bundle.cache[id];
+  bundle.hotData = {};
+
+  if (cached) {
+    cached.hot.data = bundle.hotData;
+  }
+
+  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
+    cached.hot._disposeCallbacks.forEach(function (cb) {
+      cb(bundle.hotData);
+    });
+  }
+
+  delete bundle.cache[id];
+  bundle(id);
+  cached = bundle.cache[id];
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    cached.hot._acceptCallbacks.forEach(function (cb) {
+      cb();
+    });
+
+    return true;
+  }
+}
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/main.js"], null)
+//# sourceMappingURL=/main.fb6bbcaf.js.map
