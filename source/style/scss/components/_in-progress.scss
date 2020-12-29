@@ -1,0 +1,18 @@
+.board{
+    &__in-progress{
+        width: 100%;
+        max-width: 300px;
+        min-width: 215px;
+        margin: 0 2em;
+        &-title{
+            @include label(1rem, $colorLavender, .7em);
+            margin-right: 1em;
+        }
+        &-counter{
+            @extend .board__in-progress-title;
+            width: max-content;
+            margin-right: auto;
+            text-align: center;
+        }
+    }
+}

@@ -2,7 +2,7 @@
 
 // Variables
 
-fromimport { variables } from './variables.js';
+import { variables } from './variables.js';
 
 const addCardBtn = document.body.querySelector('.board__add-new-btn'),
       toDoColumn = document.body.querySelector('div[data-column="toDo"]'),
@@ -20,17 +20,6 @@ import { Methods } from './methods.js'
 
 let methods = new Methods
 
-function checkIfEmpty(...inputs) {
-    let isEmpty = false
-    inputs.forEach(input => {
-        if (!input.value) {
-            showErrorMessage(input)
-            return isEmpty = true
-        }
-    })
-    return isEmpty
-}
-
 // Listeners
 
 // opens the modal window
@@ -44,12 +33,11 @@ modal.addEventListener('click', event => {
         setTimeout(() => {
             methods.clearInput(modal) 
         }, 500); // clears inputs so that there are no previously entered values
-                 // timeout is needed so that the clearing of valuees weren't visible during window fade out
-    };
+                         // timeout is needed so that the clearing of values weren't visible during window fade out
+    }
 
-    if (event.target.classList.contains('add-card-modal__save-btn')) { // makes the necessary checks, shows error if empty, else adds a card 
-        if (checkIfEmpty(titleInput, descriptionInput)) {
-            return 
+    if (event.target.classList.contains('add-card-modal__save-btn')) { // makes the necessary checks, shows error if empty, else adds a card
+        if (methods.checkIfEmpty(titleInput, descriptionInput)) {
         } else {
             let cardObject = {
                 id: methods.generateID(),
@@ -59,18 +47,18 @@ modal.addEventListener('click', event => {
             }
 
             methods.putInLocalStorage(cardObject, 'toDo');
-            toDoColumn.innerHTML += variables.getCard(cardObject)
+            toDoColumn.innerHTML += variables.getCard(cardObject);
             setTimeout(() => methods.clearInput(modal), 500);
             methods.countCards();
             methods.clampText();
             methods.toggle(modal);
-        }; 
-    };
+        }
+    }
 });
 
 modal.addEventListener ('keyup', event => { // removes error message when user starts to type into the input
-    if (event.target.classList.contains('add-card-modal__title-input') 
+    if (event.target.classList.contains('add-card-modal__title-input')
     || event.target.classList.contains('add-card-modal__description-input')) {
-        hideErrorMessage(event.target)
-    };
+        methods.hideErrorMessage(event.target)
+    }
 });

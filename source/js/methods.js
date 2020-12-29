@@ -8,19 +8,28 @@ export class Methods {
 
     getCards(column) {
         if (column === 'toDo') {
-            let cards = document.body.querySelector('div[data-column="toDo"]')
+            return document.body.querySelector('div[data-column="toDo"]')
                                      .querySelectorAll('.board__card');
-            return cards
-        } 
+        } else if (column === 'inProgress') {
+            return document.body.querySelector('div[data-column="inProgress"]')
+                                .querySelectorAll('.board__card');
+        } else if (column === 'done') {
+            return document.body.querySelector('div[data-column="done"]')
+            .querySelectorAll('.board__card');
+        }
     }
 
     countCards() {
-        let cards = document.body.querySelectorAll('div[data-card="card"]'),
-            counterBlock = document.body.querySelector('.board__to-do-counter'),
-            counter = cards.length;
+        let columns = document.body.querySelectorAll('.board__cards-container[data-column]')
 
-        cards ? counter = cards.length : counter = 0;
-        counterBlock.innerHTML = counter;    
+        for (let i = 0; i < columns.length; i++) {
+            let cards = this.getCards(columns[i].dataset.column),
+                counter = document.body.querySelector(`div[data-counter="${columns[i].dataset.column}"]`),
+                cardNumber;
+
+                cards ? cardNumber = cards.length : cardNumber = 0;
+                counter.innerHTML = cardNumber;            
+        }
     };
 
     deleteCard(card) {
@@ -48,7 +57,7 @@ export class Methods {
         let cardBodies = document.body.querySelectorAll('.board__card-copy');
         for (let i = 0; i < cardBodies.length; i++) {
             $clamp(cardBodies[i], {clamp: 2})
-        };
+        }
     };
 
     clearInput(modal) {
@@ -58,14 +67,7 @@ export class Methods {
                 modal.querySelector('textarea[data-input_type="description"]')
             ];
             inputs.forEach(input => input.value = '');
-        };
-    };
-
-    getInputValues(modal) {
-        return inputValues = {
-            title: modal.body.querySelector('.add-card-modal__title-input').value,
-            description: modal.body.querySelector('.add-card-modal__description-input').value,
-        };
+        }
     };
 
     getDate() {
@@ -74,7 +76,7 @@ export class Methods {
 
     generateID() {
         let cardNumber = document.body.querySelectorAll('.board__card').length
-        return cardNumber ? `c_${cardNumber + 1}` : `c_1`;
+        return cardNumber ? `c_${cardNumber + 1}` : `c_1`; // the card id is the number of already existing cards + 1
     };
 
     putInLocalStorage(cardObject, column) {
@@ -82,7 +84,7 @@ export class Methods {
             let toDoStorage = JSON.parse(localStorage.getItem('toDo'));
             toDoStorage.push(cardObject);
             localStorage.setItem('toDo', JSON.stringify(toDoStorage));
-        };
+        }
     };
 
     removeFromLocalStorage(column, id) {
@@ -92,12 +94,24 @@ export class Methods {
                 if (card.id === id) {
                     toDoStorage.splice(toDoStorage.indexOf(card), 1);
                 }
-            });
+            })
             localStorage.setItem('toDo', JSON.stringify(toDoStorage));
-        };
+        }
     };
-};
+
+    showErrorMessage = input => input.nextElementSibling.classList.add('active');
+    hideErrorMessage = input => input.nextElementSibling.classList.remove('active');
+
+    checkIfEmpty(...inputs) {
+        let isEmpty = false;
+        inputs.forEach(input => {
+            if (!input.value) {
+                methods.showErrorMessage(input)
+                return isEmpty = true;
+            }
+        })
+        return isEmpty
+    }; 
+}
 
 let methods = new Methods;
-
-methods.clearInput()

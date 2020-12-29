@@ -484,8 +484,6 @@ var Methods = /*#__PURE__*/function () {
           clamp: 2
         });
       }
-
-      ;
     }
   }, {
     key: "clearInput",
@@ -497,8 +495,6 @@ var Methods = /*#__PURE__*/function () {
           return input.value = '';
         });
       }
-
-      ;
     }
   }, {
     key: "getDate",
@@ -532,8 +528,6 @@ var Methods = /*#__PURE__*/function () {
         });
         localStorage.setItem('toDo', JSON.stringify(toDoStorage));
       }
-
-      ;
     }
   }, {
     key: "checkIfEmpty",
@@ -550,6 +544,7 @@ var Methods = /*#__PURE__*/function () {
           return isEmpty = true;
         }
       });
+      return isEmpty;
     }
   }]);
 
@@ -557,7 +552,6 @@ var Methods = /*#__PURE__*/function () {
 }();
 
 exports.Methods = Methods;
-;
 var methods = new Methods();
 },{}],"js/addCard.js":[function(require,module,exports) {
 'use strict'; // Variables
@@ -580,25 +574,8 @@ var hideErrorMessage = function hideErrorMessage(input) {
   return input.nextElementSibling.classList.remove('active');
 };
 
-var methods = new _methods.Methods();
-
-function checkIfEmpty() {
-  var isEmpty = false;
-
-  for (var _len = arguments.length, inputs = new Array(_len), _key = 0; _key < _len; _key++) {
-    inputs[_key] = arguments[_key];
-  }
-
-  inputs.forEach(function (input) {
-    if (!input.value) {
-      methods.showErrorMessage(input);
-      return isEmpty = true;
-    }
-  });
-  return isEmpty;
-} // Listeners
+var methods = new _methods.Methods(); // Listeners
 // opens the modal window
-
 
 addCardBtn.addEventListener('click', function () {
   return methods.toggle(modal);
@@ -615,10 +592,8 @@ modal.addEventListener('click', function (event) {
   }
 
   if (event.target.classList.contains('add-card-modal__save-btn')) {
-    // makes the necessary checks, shows error if empty, else adds a card 
-    if (!methods.checkIfEmpty(titleInput, descriptionInput)) {
-      return;
-    } else {
+    // makes the necessary checks, shows error if empty, else adds a card
+    if (methods.checkIfEmpty(titleInput, descriptionInput)) {} else {
       var cardObject = {
         id: methods.generateID(),
         title: titleInput.value,
@@ -648,7 +623,7 @@ modal.addEventListener('keyup', function (event) {
 var _methods = require("./methods.js");
 
 var methods = new _methods.Methods();
-var clearBtns = document.body.querySelectorAll('.board__clear-btn svg');
+var clearBtns = document.body.querySelectorAll('.board__header-clear-btn svg');
 var cards = document.body.querySelectorAll('div[data-column');
 
 for (var i = 0; i < clearBtns.length; i++) {
@@ -738,7 +713,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61788" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60769" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

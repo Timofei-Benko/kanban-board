@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban Board</title>
-    <link rel="stylesheet" href="/main.077333bd.css">
+    <link rel="stylesheet" href="/main.5348db1d.css">
     <link rel="icon" type="image/svg" href="/favicon.e263b9b7.svg">
     <script src="/main.fb6bbcaf.js" defer="" type="module"></script>
-<script src="/main.077333bd.js"></script></head>
+<script src="/main.5348db1d.js"></script></head>
 <body>
     <div class="wrap">
         <header class="header">
@@ -15,11 +15,11 @@
             <p class="header__subtitle">A board to keep track of your tasks</p>
         </header>
         <main class="board">
-            <section class="board__to-do" data-column="toDo">
+            <section class="board__column board__column--to-do" data-column="toDo">
                     <div class="board__header">
-                        <h2 class="board__to-do-title">To do</h2>
-                        <div class="board__to-do-counter" data-counter="toDo">0</div>
-                        <button class="board__clear-btn" data-column="toDo">
+                        <h2 class="board__header-title board__header-title--to-do">To do</h2>
+                        <div class="board__header-counter board__header-counter--to-do" data-counter="toDo">0</div>
+                        <button class="board__header-clear-btn" data-column="toDo">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 0 427 427.001">
                                 <defs></defs>
                                 <path d="M232.398 154.703c-5.523 0-10 4.477-10 10v189c0 5.52 4.477 10 10 10 5.524 0 10-4.48 10-10v-189c0-5.523-4.476-10-10-10zm0 0M114.398 154.703c-5.523 0-10 4.477-10 10v189c0 5.52 4.477 10 10 10 5.524 0 10-4.48 10-10v-189c0-5.523-4.476-10-10-10zm0 0"></path>
@@ -32,11 +32,12 @@
                     </div>
                 <button class="board__add-new-btn">+ Add new</button>
             </section>
-            <section class="board__in-progress" data-column="inProgress">
+            <section class="board__column board__column--in-progress" data-column="inProgress">
                 <div class="board__header">
-                    <h2 class="board__in-progress-title">In progress</h2>
-                    <div class="board__in-progress-counter" data-counter="inProgress">0</div>
-                    <button class="board__clear-btn" data-column="inProgress">
+                    <h2 class="board__header-title board__header-title--in-progress">In progress</h2>
+                    <div class="board__header-counter board__header-counter--in-progress" data-counter="inProgress">0
+                    </div>
+                    <button class="board__header-clear-btn" data-column="inProgress">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 0 427 427.001">
                             <defs></defs>
                             <path d="M232.398 154.703c-5.523 0-10 4.477-10 10v189c0 5.52 4.477 10 10 10 5.524 0 10-4.48 10-10v-189c0-5.523-4.476-10-10-10zm0 0M114.398 154.703c-5.523 0-10 4.477-10 10v189c0 5.52 4.477 10 10 10 5.524 0 10-4.48 10-10v-189c0-5.523-4.476-10-10-10zm0 0"></path>

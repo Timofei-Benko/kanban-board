@@ -6,6 +6,14 @@
     border-radius: 10px;
     background-color: #f1eeee;
     overflow-y: scroll;
+    &__column{
+        width: 100%;
+        max-width: 300px;
+        min-width: 215px;
+        &:nth-of-type(2){
+            margin: 0 2em;
+        }
+    }
     &__header{
         @include flexible(space-between, center, row, nowrap);
         margin-bottom: 1em;
@@ -13,22 +21,42 @@
         border-radius: 10px;
         background-color: #ffffff;
         box-shadow: 1px 1px 2px $colorGrayLight, -1px -1px 2px $colorGrayLight;
-    }
-    &__clear-btn{
-        width: 36px;
-        border: none;
-        background: transparent;
-        &:focus,
-        &:focus svg{ // in order for the btn to able to focus on 'tab' key press
-            outline: none;
-            fill: $colorGray;
+        &-title{
+            margin-right: 1em;
+            &--to-do{
+                @include label(1rem, $colorGrayLight, .7em);
+            }
+            &--in-progress{
+                @include label(1rem, $colorLavender, .7em);
+            }
         }
-        & svg{
-            fill: #a8a6a6;
-            transition: all .2s ease-in-out;
-            &:hover{
+        &-counter{
+            width: max-content;
+            margin-right: auto;
+            text-align: center;
+            &--to-do{
+                @extend .board__header-title--to-do;
+            }
+            &--in-progress{
+                @extend .board__header-title--in-progress;
+            }
+        }
+        &-clear-btn{
+            width: 36px;
+            border: none;
+            background: transparent;
+            &:focus,
+            &:focus svg{ // in order for the btn to able to focus on 'tab' key press
+                outline: none;
                 fill: $colorGray;
-                cursor: pointer;
+            }
+            & svg{
+                fill: #a8a6a6;
+                transition: all .2s ease-in-out;
+                &:hover{
+                    fill: $colorGray;
+                    cursor: pointer;
+                }
             }
         }
     }
