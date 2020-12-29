@@ -412,12 +412,24 @@ var Methods = /*#__PURE__*/function () {
   function Methods() {
     _classCallCheck(this, Methods);
 
-    _defineProperty(this, "showErrorMessage", function (input) {
-      return input.nextElementSibling.classList.add('active');
+    _defineProperty(this, "showErrorMessage", function () {
+      for (var _len = arguments.length, inputs = new Array(_len), _key = 0; _key < _len; _key++) {
+        inputs[_key] = arguments[_key];
+      }
+
+      return inputs.forEach(function (input) {
+        input.nextElementSibling.classList.add('active');
+      });
     });
 
-    _defineProperty(this, "hideErrorMessage", function (input) {
-      return input.nextElementSibling.classList.remove('active');
+    _defineProperty(this, "hideErrorMessage", function () {
+      for (var _len2 = arguments.length, inputs = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        inputs[_key2] = arguments[_key2];
+      }
+
+      return inputs.forEach(function (input) {
+        input.nextElementSibling.classList.remove('active');
+      });
     });
   }
 
@@ -490,7 +502,7 @@ var Methods = /*#__PURE__*/function () {
     value: function clearInput(modal) {
       if (modal) {
         // else browser will throw an error cause it is unable to run qs on null
-        var inputs = [modal.querySelector('input[data-input_type="title"]'), modal.querySelector('textarea[data-input_type="description"]')];
+        var inputs = [modal.querySelector('textarea[data-input_type="description"]'), modal.querySelector('input[data-input_type="title"]')];
         inputs.forEach(function (input) {
           return input.value = '';
         });
@@ -534,8 +546,8 @@ var Methods = /*#__PURE__*/function () {
     value: function checkIfEmpty() {
       var isEmpty = false;
 
-      for (var _len = arguments.length, inputs = new Array(_len), _key = 0; _key < _len; _key++) {
-        inputs[_key] = arguments[_key];
+      for (var _len3 = arguments.length, inputs = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+        inputs[_key3] = arguments[_key3];
       }
 
       inputs.forEach(function (input) {
@@ -552,7 +564,6 @@ var Methods = /*#__PURE__*/function () {
 }();
 
 exports.Methods = Methods;
-var methods = new Methods();
 },{}],"js/addCard.js":[function(require,module,exports) {
 'use strict'; // Variables
 
@@ -563,16 +574,8 @@ var _methods = require("./methods.js");
 var addCardBtn = document.body.querySelector('.board__add-new-btn'),
     toDoColumn = document.body.querySelector('div[data-column="toDo"]'),
     modal = document.body.querySelector('.add-card-modal'),
-    titleInput = document.body.querySelector('.add-card-modal__title-input'),
-    descriptionInput = document.body.querySelector('.add-card-modal__description-input'); // Functions
-
-var showErrorMessage = function showErrorMessage(input) {
-  return input.nextElementSibling.classList.add('active');
-};
-
-var hideErrorMessage = function hideErrorMessage(input) {
-  return input.nextElementSibling.classList.remove('active');
-};
+    titleInput = modal.querySelector('input[data-input_type="title"]'),
+    descriptionInput = modal.querySelector('textarea[data-input_type="description"]'); // Methods
 
 var methods = new _methods.Methods(); // Listeners
 // opens the modal window
@@ -587,7 +590,9 @@ modal.addEventListener('click', function (event) {
 
     setTimeout(function () {
       methods.clearInput(modal);
-    }, 500); // clears inputs so that there are no previously entered values
+      methods.hideErrorMessage(titleInput, descriptionInput);
+    }, 500); // clears inputs so that there are no previously entered values and hide error messages if they
+    // were shown
     // timeout is needed so that the clearing of values weren't visible during window fade out
   }
 
@@ -624,7 +629,7 @@ var _methods = require("./methods.js");
 
 var methods = new _methods.Methods();
 var clearBtns = document.body.querySelectorAll('.board__header-clear-btn svg');
-var cards = document.body.querySelectorAll('div[data-column');
+var cards = document.body.querySelectorAll('div[data-column]');
 
 for (var i = 0; i < clearBtns.length; i++) {
   clearBtns[i].addEventListener('click', function (event) {
@@ -632,8 +637,6 @@ for (var i = 0; i < clearBtns.length; i++) {
     methods.deleteAllCards(column);
   });
 }
-
-;
 
 for (var _i = 0; _i < cards.length; _i++) {
   cards[_i].addEventListener('click', function (event) {
@@ -643,8 +646,6 @@ for (var _i = 0; _i < cards.length; _i++) {
     }
   });
 }
-
-;
 },{"./methods.js":"js/methods.js"}],"js/pageLoad.js":[function(require,module,exports) {
 'use strict';
 
@@ -713,7 +714,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60769" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58070" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

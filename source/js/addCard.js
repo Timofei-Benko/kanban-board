@@ -7,14 +7,11 @@ import { variables } from './variables.js';
 const addCardBtn = document.body.querySelector('.board__add-new-btn'),
       toDoColumn = document.body.querySelector('div[data-column="toDo"]'),
       modal = document.body.querySelector('.add-card-modal'),
-      titleInput = document.body.querySelector('.add-card-modal__title-input'),    
-      descriptionInput = document.body.querySelector('.add-card-modal__description-input');
+      titleInput = modal.querySelector('input[data-input_type="title"]'),
+      descriptionInput = modal.querySelector('textarea[data-input_type="description"]');
 
 
-// Functions
-
-let showErrorMessage = input => input.nextElementSibling.classList.add('active')
-let hideErrorMessage = input => input.nextElementSibling.classList.remove('active')
+// Methods
 
 import { Methods } from './methods.js'
 
@@ -31,8 +28,10 @@ modal.addEventListener('click', event => {
         methods.toggle(modal) // closes the modal
 
         setTimeout(() => {
-            methods.clearInput(modal) 
-        }, 500); // clears inputs so that there are no previously entered values
+            methods.clearInput(modal);
+            methods.hideErrorMessage(titleInput, descriptionInput);
+        }, 500); // clears inputs so that there are no previously entered values and hide error messages if they
+                         // were shown
                          // timeout is needed so that the clearing of values weren't visible during window fade out
     }
 

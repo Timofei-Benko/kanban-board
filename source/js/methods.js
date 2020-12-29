@@ -63,8 +63,8 @@ export class Methods {
     clearInput(modal) {
         if (modal) { // else browser will throw an error cause it is unable to run qs on null
             let inputs = [
-                modal.querySelector('input[data-input_type="title"]'), 
-                modal.querySelector('textarea[data-input_type="description"]')
+                modal.querySelector('textarea[data-input_type="description"]'),
+                modal.querySelector('input[data-input_type="title"]')
             ];
             inputs.forEach(input => input.value = '');
         }
@@ -99,8 +99,8 @@ export class Methods {
         }
     };
 
-    showErrorMessage = input => input.nextElementSibling.classList.add('active');
-    hideErrorMessage = input => input.nextElementSibling.classList.remove('active');
+    showErrorMessage = (...inputs) => inputs.forEach((input => {input.nextElementSibling.classList.add('active')}));
+    hideErrorMessage = (...inputs) => inputs.forEach((input => {input.nextElementSibling.classList.remove('active')}));
 
     checkIfEmpty(...inputs) {
         let isEmpty = false;
@@ -113,5 +113,3 @@ export class Methods {
         return isEmpty
     }; 
 }
-
-let methods = new Methods;
