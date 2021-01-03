@@ -10,13 +10,13 @@ for (let i = 0; i < clearBtns.length; i++) {
     clearBtns[i].addEventListener('click', event => {
         let column = event.target.closest('button[data-column]').dataset.column;
         methods.deleteAllCards(column);
+
     })    
 }
 
 for (let i = 0; i < cards.length; i++) {
     cards[i].addEventListener ('click', event => {
-        if(event.target.classList.contains('board__card-remove-btn')
-        || event.target.closest('.board__card-remove-btn')) {
+        if(event.target.closest('.board__card-remove-btn-icon')) {
             let card = event.target.closest('.board__card');
             methods.deleteCard(card);
         }
