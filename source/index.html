@@ -49,24 +49,30 @@
                 <div class="board__cards-container" data-column="inProgress">
                 </div>
         </section>
-        <div class="add-card-modal">
-                <div class="add-card-modal__content">
-                    <span class="add-card-modal__close-btn">&times;</span>
-                    <input class="add-card-modal__title-input" data-input_type="title" type="text" maxlength="24" placeholder="Enter card title">
+            <div class="modal" id="add-card-modal">
+                <div class="modal__content">
+                    <span class="modal__close-btn">&times;</span>
+                    <input class="modal__title modal__title--input" data-input_type="title" type="text" maxlength="24"
+                           placeholder="Enter card title">
                     <span class="error-message">The field must not be empty</span>
-                    <textarea class="add-card-modal__description-input" data-input_type="description" name="" rows="10" maxlength="1000" placeholder="Enter card description"></textarea>
+                    <textarea class="modal__description modal__description--input" data-input_type="description" name="" rows="10"
+                              maxlength="1000" placeholder="Enter card description"></textarea>
                     <span class="error-message">The field must not be empty</span>
-                    <button class="add-card-modal__save-btn">Save</button>
+                    <button class="modal__save-btn">Save</button>
                 </div>
             </div>
-            <div class="edit-card-modal">
-                <div class="edit-card-modal__content">
-                    <span class="edit-card-modal__close-btn">&times;</span>
-                    <input type="text" maxlength="24" placeholder="Enter card title" class="edit-card-modal__title-input">
+            <div class="modal" id="edit-card-modal">
+                <div class="modal__content">
+                    <span class="modal__close-btn">&times;</span>
+                    <input class="modal__title modal__title--input" data-input_type="title" type="text" maxlength="24"
+                           placeholder="Change card title">
                     <span class="error-message">The field must not be empty</span>
-                    <textarea class="edit-card-modal__description-input" name="" rows="10" maxlength="1000" placeholder="Enter card description"></textarea>
+                    <p class="modal__title">Title</p>
+                    <textarea class="modal__description modal__description--input" data-input_type="description"
+                              name="" rows="10"
+                              maxlength="1000" placeholder="Change card description"></textarea>
+                    <p class="modal__description">Description</p>
                     <span class="error-message">The field must not be empty</span>
-                    <button class="edit-card-modal__save-btn">Save</button>
                 </div>
             </div>
         </main>

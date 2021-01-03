@@ -9,13 +9,13 @@ export class Methods {
     getCards(column) {
         if (column === 'toDo') {
             return document.body.querySelector('div[data-column="toDo"]')
-                                     .querySelectorAll('.board__card');
+                                .querySelectorAll('.board__card');
         } else if (column === 'inProgress') {
             return document.body.querySelector('div[data-column="inProgress"]')
                                 .querySelectorAll('.board__card');
         } else if (column === 'done') {
             return document.body.querySelector('div[data-column="done"]')
-            .querySelectorAll('.board__card');
+                                .querySelectorAll('.board__card');
         }
     }
 
@@ -23,9 +23,9 @@ export class Methods {
         let columns = document.body.querySelectorAll('.board__cards-container[data-column]')
 
         for (let i = 0; i < columns.length; i++) {
-            let cards = this.getCards(columns[i].dataset.column),
-                counter = document.body.querySelector(`div[data-counter="${columns[i].dataset.column}"]`),
-                cardNumber;
+            let cardNumber,
+                cards = this.getCards(columns[i].dataset.column),
+                counter = document.body.querySelector(`div[data-counter="${columns[i].dataset.column}"]`)
 
                 cards ? cardNumber = cards.length : cardNumber = 0;
                 counter.innerHTML = cardNumber;            
@@ -74,10 +74,7 @@ export class Methods {
         return new Date(Date.now()).toLocaleDateString();
     };
 
-    generateID() {
-        let cardNumber = document.body.querySelectorAll('.board__card').length
-        return cardNumber ? `c_${cardNumber + 1}` : `c_1`; // the card id is the number of already existing cards + 1
-    };
+    generateID = () => `c_${Date.now()}`;
 
     putInLocalStorage(cardObject, column) {
         if (column === 'toDo') {
@@ -99,14 +96,18 @@ export class Methods {
         }
     };
 
-    showErrorMessage = (...inputs) => inputs.forEach((input => {input.nextElementSibling.classList.add('active')}));
-    hideErrorMessage = (...inputs) => inputs.forEach((input => {input.nextElementSibling.classList.remove('active')}));
+    showErrorMessage = (...inputs) => inputs.forEach((
+            input => {input.nextElementSibling.classList.add('active')}
+        ));
+    hideErrorMessage = (...inputs) => inputs.forEach((
+            input => {input.nextElementSibling.classList.remove('active')}
+        ));
 
     checkIfEmpty(...inputs) {
         let isEmpty = false;
         inputs.forEach(input => {
             if (!input.value) {
-                methods.showErrorMessage(input)
+                this.showErrorMessage(input)
                 return isEmpty = true;
             }
         })

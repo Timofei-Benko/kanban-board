@@ -20,11 +20,11 @@ window.addEventListener('load', () => {
     }
     if (!localStorage.getItem('inProgress')) {
         localStorage.setItem('inProgress', JSON.stringify([]));
-    } 
+    }
     if (!localStorage.getItem('done')) {
         localStorage.setItem('done', JSON.stringify([]));
     }
 
     methods.countCards();
-
+    methods.clampText();
 });
