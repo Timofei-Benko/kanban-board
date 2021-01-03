@@ -1,4 +1,4 @@
-.add-card-modal {
+.modal {
     visibility: hidden;
     opacity: 0;
     position: fixed; /* Stay in place */
@@ -40,37 +40,52 @@
         cursor: pointer;
         }
     }
-    &__input-container {
-        @include flexible(flex-start, flex-start, row-reverse, nowrap);
-    }
-    &__title-input {
+    //&__input-container {
+    //    @include flexible(flex-start, flex-start, row-reverse, nowrap);
+    //}
+    &__title {
         width: 100%;
         font-size: 1.2rem;
         font-family: 'SF Pro Displkay Medium', sans-serif;
         color: $colorGrayDark;
-        border: none;
-        outline: none;
-        &::placeholder {
-            color: $colorGray;
+        &--input{
+            border: none;
+            outline: none;
+            &::placeholder {
+                color: $colorGray;
+            }
         }
     }
-    &__description-input {
+    &__description {
         width: 100%;
         padding: 5px;
         margin-top: 10px;
         font-size: 1rem;
         font-family: 'SF Pro Displkay Regular', sans-serif;
         color: $colorGrayDark;
-        border: 1px solid $colorGray;
-        border-radius: 5px;
-        outline: none;
-        resize: vertical;
-        &::placeholder {
-            color: $colorGray;
+        &--input {
+            border: 1px solid $colorGray;
+            border-radius: 5px;
+            outline: none;
+            resize: vertical;
+            &::placeholder {
+                color: $colorGray;
+            }
         }
     }
     &__save-btn {
        @include btn(30%, 5px, $colorGreen, #b4dfd0);
        margin-top: 10px;
+    }
+}
+
+#edit-card-modal {
+    //visibility: visible;
+    //opacity: 1;
+    & .modal__title-input {
+        display: none;
+    }
+    & .modal__description-input {
+        display: none;
     }
 }
