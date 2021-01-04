@@ -44,6 +44,7 @@
     //    @include flexible(flex-start, flex-start, row-reverse, nowrap);
     //}
     &__title {
+        position: relative;
         width: 100%;
         font-size: 1.2rem;
         font-family: 'SF Pro Displkay Medium', sans-serif;
@@ -57,6 +58,7 @@
         }
     }
     &__description {
+        position: relative;
         width: 100%;
         padding: 5px;
         margin-top: 10px;
@@ -73,6 +75,19 @@
             }
         }
     }
+    &__error-message::before {
+        content: "This field is requred";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: block;
+        height: .7rem;
+        width: 100%;
+        font-size: .7rem;
+        color: #eb7b7b;
+    }
     &__save-btn {
        @include btn(30%, 5px, $colorGreen, #b4dfd0);
        margin-top: 10px;
@@ -80,12 +95,10 @@
 }
 
 #edit-card-modal {
-    //visibility: visible;
-    //opacity: 1;
-    & .modal__title-input {
+    & .modal__title--input {
         display: none;
     }
-    & .modal__description-input {
+    & .modal__description--input {
         display: none;
     }
 }
