@@ -422,7 +422,10 @@ var Methods = /*#__PURE__*/function () {
       }
 
       return inputs.forEach(function (input) {
-        input.nextElementSibling.classList.add('active');
+        var modal = input.parentElement,
+            inputType = input.dataset.input_type,
+            errorMessage = modal.querySelector("span[data-input_type=\"".concat(inputType, "\"]"));
+        errorMessage.classList.add('active');
       });
     });
 
@@ -432,7 +435,10 @@ var Methods = /*#__PURE__*/function () {
       }
 
       return inputs.forEach(function (input) {
-        input.nextElementSibling.classList.remove('active');
+        var modal = input.parentElement,
+            inputType = input.dataset.input_type,
+            errorMessage = modal.querySelector("span[data-input_type=\"".concat(inputType, "\"]"));
+        errorMessage.classList.remove('active');
       });
     });
   }
@@ -559,10 +565,22 @@ var Methods = /*#__PURE__*/function () {
       });
       return isEmpty;
     }
+  }, {
+    key: "enableTitleEdit",
+    value: function enableTitleEdit() {
+      var editModal = document.body.querySelector('#edit-card-modal'),
+          titleInput = editModal.querySelector('.modal__title--input'),
+          descriptionInput = editModal.querySelector('.modal__description--input'),
+          title = editModal.querySelector('#title'),
+          description = editModal.querySelector('#description');
+    }
   }]);
 
   return Methods;
-}();
+}(); // TODO:
+//  - methods for switching between tittle/description display and editing
+//  - save/discard changes buttons and functionality
+
 
 exports.Methods = Methods;
 },{}],"js/addCard.js":[function(require,module,exports) {
@@ -763,7 +781,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50610" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51507" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

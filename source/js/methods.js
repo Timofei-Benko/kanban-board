@@ -97,10 +97,22 @@ export class Methods {
     };
 
     showErrorMessage = (...inputs) => inputs.forEach((
-            input => {input.nextElementSibling.classList.add('active')}
+            input => {
+                let modal = input.parentElement,
+                    inputType = input.dataset.input_type,
+                    errorMessage = modal.querySelector(`span[data-input_type="${inputType}"]`);
+
+                errorMessage.classList.add('active');
+            }
         ));
     hideErrorMessage = (...inputs) => inputs.forEach((
-            input => {input.nextElementSibling.classList.remove('active')}
+            input => {
+                let modal = input.parentElement,
+                    inputType = input.dataset.input_type,
+                    errorMessage = modal.querySelector(`span[data-input_type="${inputType}"]`);
+
+                errorMessage.classList.remove('active');
+            }
         ));
 
     checkIfEmpty(...inputs) {
@@ -112,5 +124,17 @@ export class Methods {
             }
         })
         return isEmpty
-    }; 
+    };
+
+    enableTitleEdit() {
+        let editModal = document.body.querySelector('#edit-card-modal'),
+            titleInput = editModal.querySelector('.modal__title--input'),
+            descriptionInput = editModal.querySelector('.modal__description--input'),
+            title = editModal.querySelector('#title'),
+            description = editModal.querySelector('#description');
+    }
 }
+
+// TODO:
+//  - methods for switching between tittle/description display and editing
+//  - save/discard changes buttons and functionality
