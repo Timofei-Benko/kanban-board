@@ -53,9 +53,9 @@
                 <div class="modal__content">
                     <span class="modal__close-btn">&times;</span>
                     <input class="modal__title modal__title--input" data-input_type="title" type="text" maxlength="24" placeholder="Enter card title">
-                    <span class="error-message">The field must not be empty</span>
+                    <span class="error-message" data-input_type="title">This field is requred</span>
                     <textarea class="modal__description modal__description--input" data-input_type="description" name="" rows="10" maxlength="1000" placeholder="Enter card description"></textarea>
-                    <span class="error-message">The field must not be empty</span>
+                    <span class="error-message" data-input_type="description">This field is requred</span>
                     <button class="modal__save-btn">Save</button>
                 </div>
             </div>
@@ -63,11 +63,11 @@
                 <div class="modal__content">
                     <span class="modal__close-btn">&times;</span>
                     <input class="modal__title modal__title--input" data-input_type="title" type="text" maxlength="24" placeholder="Change card title">
-                    <span class="error-message">The field must not be empty</span>
-                    <p class="modal__title">Title</p>
+                    <span class="error-message">This field is requred</span>
+                    <p class="modal__title" id="title">Title</p>
                     <textarea class="modal__description modal__description--input" data-input_type="description" name="" rows="10" maxlength="1000" placeholder="Change card description"></textarea>
-                    <p class="modal__description">Description</p>
-                    <span class="error-message">The field must not be empty</span>
+                    <span class="error-message">This field is requred</span>
+                    <p class="modal__description" id="description">Description</p>
                 </div>
             </div>
         </main>
