@@ -1,9 +1,13 @@
 'use strict'
 
+import { variables } from "./variables.js";
+
 export class Methods {
 
-    toggle(el) {
-        el.classList.toggle('active');
+    toggle(...el) {
+        el.forEach(el => {
+            el.classList.toggle('active');
+        })
     };
 
     getCards(column) {
@@ -84,6 +88,16 @@ export class Methods {
         }
     };
 
+    updateLocalStorage(column, id, fieldToUpdate, value) {
+        if (column === 'toDo') {
+            let toDoStorage = JSON.parse(localStorage.getItem('toDo'));
+            let card = toDoStorage.find(card => card.id === id);
+            card[`${fieldToUpdate}`] = value;
+            toDoStorage.splice(toDoStorage.indexOf(card), 1, card);
+            localStorage.setItem('toDo', JSON.stringify(toDoStorage));
+        }
+    }
+
     removeFromLocalStorage(column, id) {
         if (column === 'toDo') {
             let toDoStorage = JSON.parse(localStorage.getItem('toDo'));
@@ -93,6 +107,13 @@ export class Methods {
                 }
             })
             localStorage.setItem('toDo', JSON.stringify(toDoStorage));
+        }
+    };
+
+    getCardFromLocalStorage(column, id) {
+        if (column === 'toDo') {
+            let toDoStorage = JSON.parse(localStorage.getItem('toDo'));
+            return toDoStorage.find(card => card.id === id)
         }
     };
 
@@ -126,15 +147,29 @@ export class Methods {
         return isEmpty
     };
 
-    enableTitleEdit() {
-        let editModal = document.body.querySelector('#edit-card-modal'),
-            titleInput = editModal.querySelector('.modal__title--input'),
-            descriptionInput = editModal.querySelector('.modal__description--input'),
-            title = editModal.querySelector('#title'),
-            description = editModal.querySelector('#description');
+    toggleEdit(...inputs) {
+        inputs.forEach(input => {
+            if (input === 'title') {
+                this.toggle(
+                    variables.titleEM,
+                    variables.titleInputEM,
+                    variables.saveTitleBtn,
+                    variables.discardTitleBtn
+                );
+                variables.titleInputEM.focus();
+            } else if (input === 'description') {
+                this.toggle(
+                    variables.descriptionEM,
+                    variables.descriptionInputEM,
+                    variables.saveDescriptionBtn,
+                    variables.discardDescriptionBtn
+                );
+                variables.descriptionInputEM.focus()
+            };
+        })
     }
 }
 
 // TODO:
-//  - methods for switching between tittle/description display and editing
-//  - save/discard changes buttons and functionality
+//  - move card functionality
+//  - unify show/hide error message methods

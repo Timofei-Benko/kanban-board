@@ -385,6 +385,15 @@ exports.variables = void 0;
 var removeIcon = '<svg class="board__card-remove-btn-icon" height="511.99998pt" viewBox="1 1 511.99998 511.99998"' + ' width="511.99998pt"' + ' xmlns="http://www.w3.org/2000/svg"><path d="m256 0c-141.386719 0-256 114.613281-256 256s114.613281 256 256 256 256-114.613281 256-256c-.167969-141.316406-114.683594-255.832031-256-256zm0 480c-123.710938 0-224-100.289062-224-224s100.289062-224 224-224 224 100.289062 224 224c-.132812 123.65625-100.34375 223.867188-224 224zm0 0"/><path d="m380.449219 131.550781c-6.25-6.246093-16.378907-6.246093-22.625 0l-101.824219 101.824219-101.824219-101.824219c-6.140625-6.355469-16.269531-6.53125-22.625-.390625-6.355469 6.136719-6.53125 16.265625-.390625 22.621094.128906.132812.257813.265625.390625.394531l101.824219 101.824219-101.824219 101.824219c-6.355469 6.136719-6.53125 16.265625-.390625 22.625 6.136719 6.355469 16.265625 6.53125 22.621094.390625.132812-.128906.265625-.257813.394531-.390625l101.824219-101.824219 101.824219 101.824219c6.355469 6.136719 16.484375 5.960937 22.621093-.394531 5.988282-6.199219 5.988282-16.03125 0-22.230469l-101.820312-101.824219 101.824219-101.824219c6.246093-6.246093 6.246093-16.375 0-22.625zm0 0"/></svg>';
 var moveIcon = "<svg class=\"board__card-move-btn-icon xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 612 612\"><defs/>\n<path d=\"M431.001 289.189l-108.19-108.19c-7.478-7.478-19.583-7.478-27.042 0-7.478 7.478-7.478 19.584 0 27.043l78.814 78.833H172.125C161.568 286.875 153 295.443 153 306s8.568 19.125 19.125 19.125h202.457l-78.814 78.814c-7.478 7.478-7.478 19.584 0 27.042 7.478 7.479 19.584 7.479 27.042 0L431 322.792c4.59-4.59 6.005-10.863 4.973-16.811 1.033-5.91-.401-12.202-4.972-16.792zM306 0C136.992 0 0 136.992 0 306s136.992 306 306 306 306-137.012 306-306S475.008 0 306 0zm0 573.75C158.125 573.75 38.25 453.875 38.25 306S158.125 38.25 306 38.25 573.75 158.125 573.75 306 453.875 573.75 306 573.75z\"/>\n</svg>";
 var variables = {
+  editModal: document.body.querySelector('#edit-card-modal'),
+  titleInputEM: document.body.querySelector('#edit-card-modal .modal__title--input'),
+  descriptionInputEM: document.body.querySelector('#edit-card-modal .modal__description--input'),
+  titleEM: document.body.querySelector('#title'),
+  descriptionEM: document.body.querySelector('#description'),
+  saveTitleBtn: document.body.querySelector('.modal__save-title-btn'),
+  discardTitleBtn: document.body.querySelector('.modal__discard-title-btn'),
+  saveDescriptionBtn: document.body.querySelector('.modal__description-save-btn'),
+  discardDescriptionBtn: document.body.querySelector('.modal__description-discard-btn'),
   removeIcon: removeIcon,
   moveIcon: moveIcon,
   getCard: function getCard(cardObject) {
@@ -399,6 +408,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Methods = void 0;
+
+var _variables = require("./variables.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -445,8 +456,14 @@ var Methods = /*#__PURE__*/function () {
 
   _createClass(Methods, [{
     key: "toggle",
-    value: function toggle(el) {
-      el.classList.toggle('active');
+    value: function toggle() {
+      for (var _len3 = arguments.length, el = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+        el[_key3] = arguments[_key3];
+      }
+
+      el.forEach(function (el) {
+        el.classList.toggle('active');
+      });
     }
   }, {
     key: "getCards",
@@ -533,6 +550,19 @@ var Methods = /*#__PURE__*/function () {
       }
     }
   }, {
+    key: "updateLocalStorage",
+    value: function updateLocalStorage(column, id, fieldToUpdate, value) {
+      if (column === 'toDo') {
+        var toDoStorage = JSON.parse(localStorage.getItem('toDo'));
+        var card = toDoStorage.find(function (card) {
+          return card.id === id;
+        });
+        card["".concat(fieldToUpdate)] = value;
+        toDoStorage.splice(toDoStorage.indexOf(card), 1, card);
+        localStorage.setItem('toDo', JSON.stringify(toDoStorage));
+      }
+    }
+  }, {
     key: "removeFromLocalStorage",
     value: function removeFromLocalStorage(column, id) {
       if (column === 'toDo') {
@@ -546,14 +576,24 @@ var Methods = /*#__PURE__*/function () {
       }
     }
   }, {
+    key: "getCardFromLocalStorage",
+    value: function getCardFromLocalStorage(column, id) {
+      if (column === 'toDo') {
+        var toDoStorage = JSON.parse(localStorage.getItem('toDo'));
+        return toDoStorage.find(function (card) {
+          return card.id === id;
+        });
+      }
+    }
+  }, {
     key: "checkIfEmpty",
     value: function checkIfEmpty() {
       var _this = this;
 
       var isEmpty = false;
 
-      for (var _len3 = arguments.length, inputs = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-        inputs[_key3] = arguments[_key3];
+      for (var _len4 = arguments.length, inputs = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+        inputs[_key4] = arguments[_key4];
       }
 
       inputs.forEach(function (input) {
@@ -566,24 +606,38 @@ var Methods = /*#__PURE__*/function () {
       return isEmpty;
     }
   }, {
-    key: "enableTitleEdit",
-    value: function enableTitleEdit() {
-      var editModal = document.body.querySelector('#edit-card-modal'),
-          titleInput = editModal.querySelector('.modal__title--input'),
-          descriptionInput = editModal.querySelector('.modal__description--input'),
-          title = editModal.querySelector('#title'),
-          description = editModal.querySelector('#description');
+    key: "toggleEdit",
+    value: function toggleEdit() {
+      var _this2 = this;
+
+      for (var _len5 = arguments.length, inputs = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+        inputs[_key5] = arguments[_key5];
+      }
+
+      inputs.forEach(function (input) {
+        if (input === 'title') {
+          _this2.toggle(_variables.variables.titleEM, _variables.variables.titleInputEM, _variables.variables.saveTitleBtn, _variables.variables.discardTitleBtn);
+
+          _variables.variables.titleInputEM.focus();
+        } else if (input === 'description') {
+          _this2.toggle(_variables.variables.descriptionEM, _variables.variables.descriptionInputEM, _variables.variables.saveDescriptionBtn, _variables.variables.discardDescriptionBtn);
+
+          _variables.variables.descriptionInputEM.focus();
+        }
+
+        ;
+      });
     }
   }]);
 
   return Methods;
 }(); // TODO:
-//  - methods for switching between tittle/description display and editing
-//  - save/discard changes buttons and functionality
+//  - move card functionality
+//  - unify show/hide error message methods
 
 
 exports.Methods = Methods;
-},{}],"js/addCard.js":[function(require,module,exports) {
+},{"./variables.js":"js/variables.js"}],"js/addCard.js":[function(require,module,exports) {
 'use strict'; // Variables
 
 var _variables = require("./variables.js");
@@ -620,7 +674,64 @@ saveBtn.addEventListener('click', function (event) {
 });
 },{"./variables.js":"js/variables.js","./methods.js":"js/methods.js"}],"js/editCard.js":[function(require,module,exports) {
 'use strict';
-},{}],"js/deleteCards.js":[function(require,module,exports) {
+
+var _methods = require("./methods.js");
+
+var _variables = require("./variables.js");
+
+var methods = new _methods.Methods();
+var saveTitleBtn = document.body.querySelector('.modal__save-title-btn'),
+    discardTitleBtn = document.body.querySelector('.modal__discard-title-btn');
+var currentTitleValue, currentDescriptionValue, newTitleValue, newDescriptionValue;
+
+_variables.variables.editModal.addEventListener('dblclick', function (event) {
+  if (event.target.classList.contains('modal__title--activate-input') && !_variables.variables.descriptionInputEM.classList.contains('active')) {
+    methods.toggleEdit('title');
+    currentTitleValue = _variables.variables.titleEM.innerHTML;
+    _variables.variables.titleInputEM.value = currentTitleValue;
+  } else if (event.target.classList.contains('modal__description--activate-input') && !_variables.variables.titleInputEM.classList.contains('active')) {
+    methods.toggleEdit('description');
+    currentDescriptionValue = _variables.variables.descriptionEM.innerHTML;
+    _variables.variables.descriptionInputEM.value = currentDescriptionValue;
+  }
+});
+
+_variables.variables.editModal.addEventListener('click', function (event) {
+  var cardId = _variables.variables.editModal.dataset.edit_card_id,
+      card = document.body.querySelector("div[data-card_id=\"".concat(cardId, "\"]")),
+      column = card.closest('div[data-column]').dataset.column,
+      cardTitleUI = card.querySelector('.board__card-title'),
+      cardDescriptionUI = card.querySelector('.board__card-copy');
+
+  if (event.target.classList.contains('modal__save-title-btn') || event.target.closest('.modal__save-title-btn')) {
+    if (!methods.checkIfEmpty(_variables.variables.titleInputEM)) {
+      _variables.variables.titleEM.innerHTML = _variables.variables.titleInputEM.value;
+      methods.updateLocalStorage(column, cardId, 'title', _variables.variables.titleInputEM.value);
+      cardTitleUI.innerHTML = _variables.variables.titleInputEM.value;
+      methods.toggleEdit('title');
+    }
+  }
+
+  if (event.target.classList.contains('modal__discard-title-btn') || event.target.closest('.modal__discard-title-btn')) {
+    _variables.variables.titleEM.innerHTML = currentTitleValue;
+    methods.toggleEdit('title');
+  }
+
+  if (event.target.classList.contains('modal__description-save-btn') || event.target.closest('.modal__description-save-btn')) {
+    if (!methods.checkIfEmpty(_variables.variables.descriptionInputEM)) {
+      _variables.variables.descriptionEM.innerHTML = _variables.variables.descriptionInputEM.value;
+      methods.updateLocalStorage(column, cardId, 'description', _variables.variables.descriptionInputEM.value);
+      cardDescriptionUI.innerHTML = _variables.variables.descriptionInputEM.value;
+      methods.toggleEdit('description');
+    }
+  }
+
+  if (event.target.classList.contains('modal__description-discard-btn') || event.target.closest('.modal__description-discard-btn')) {
+    _variables.variables.descriptionEM.innerHTML = currentDescriptionValue;
+    methods.toggleEdit('description');
+  }
+});
+},{"./methods.js":"js/methods.js","./variables.js":"js/variables.js"}],"js/deleteCards.js":[function(require,module,exports) {
 'use strict';
 
 var _methods = require("./methods.js");
@@ -694,24 +805,33 @@ for (var i = 0; i < modalWindows.length; i++) {
 },{"./methods.js":"js/methods.js"}],"js/modalDisplay.js":[function(require,module,exports) {
 'use strict';
 
+var _variables = require("./variables.js");
+
 var _methods = require("./methods.js");
 
 var methods = new _methods.Methods();
 var editCardModal = document.body.querySelector('#edit-card-modal'),
     addCardModal = document.body.querySelector('#add-card-modal'),
     modalWindows = document.body.querySelectorAll('.modal'),
-    cards = document.body.querySelectorAll('.board__cards-container'),
+    cardsContainers = document.body.querySelectorAll('.board__cards-container'),
     addCardBtn = document.body.querySelector('.board__add-new-btn'); // Show modal window
 
 addCardBtn.addEventListener('click', function () {
   return methods.toggle(addCardModal);
 });
 
-for (var i = 0; i < cards.length; i++) {
-  cards[i].addEventListener('click', function (event) {
+for (var i = 0; i < cardsContainers.length; i++) {
+  cardsContainers[i].addEventListener('click', function (event) {
     if (event.target.classList.contains('board__card-remove-btn-icon') || event.target.closest('.board__card-remove-btn-icon') || event.target.classList.contains('board__card-move-btn-icon' || event.target.closest('.board__card-move-btn-icon'))) {
       return;
     } else if (event.target.classList.contains('.board__card') || event.target.closest('.board__card')) {
+      var card = event.target.closest('.board__card'),
+          cardId = card.dataset.card_id,
+          column = event.target.closest('div[data-column]').dataset.column,
+          cardObject = methods.getCardFromLocalStorage(column, cardId);
+      _variables.variables.editModal.dataset.edit_card_id = card.dataset.card_id;
+      _variables.variables.titleEM.innerHTML = cardObject.title;
+      _variables.variables.descriptionEM.innerHTML = cardObject.description;
       methods.toggle(editCardModal);
     }
   });
@@ -726,10 +846,18 @@ var _loop = function _loop(_i) {
     if (event.target.classList.contains('modal__close-btn')) {
       methods.toggle(modalWindows[_i]);
       setTimeout(function () {
+        if (modalWindows[_i].id === 'edit-card-modal') {
+          if (modalWindows[_i].querySelector('.modal__title--input').classList.contains('active')) {
+            methods.toggleEdit('title');
+          } else if (modalWindows[_i].querySelector('.modal__description--input').classList.contains('active')) {
+            methods.toggleEdit('description');
+          }
+        }
+
         methods.clearInput(modalWindows[_i]);
         methods.hideErrorMessage(titleInput, descriptionInput);
-      }, 500); // timeout is needed so that the clearing of values weren't visible while the window
-      // fades away
+      }, 500); // timeout is needed so that all the things altering the DOM
+      // weren't visible while the window fades away
     }
   });
 };
@@ -737,7 +865,7 @@ var _loop = function _loop(_i) {
 for (var _i = 0; _i < modalWindows.length; _i++) {
   _loop(_i);
 }
-},{"./methods.js":"js/methods.js"}],"js/main.js":[function(require,module,exports) {
+},{"./variables.js":"js/variables.js","./methods.js":"js/methods.js"}],"js/main.js":[function(require,module,exports) {
 'use strict';
 
 require("./clamp.js");
@@ -781,7 +909,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51507" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57147" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
