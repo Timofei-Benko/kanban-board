@@ -11,13 +11,3 @@ body {
     max-width: 2048px;
     padding: 1rem;
 }
-.error-message {
-    opacity: 0;
-    visibility: hidden;
-    font-size: 0.7rem;
-    color: #eb7b7b;
-}
-.error-message.active {
-    opacity: 1;
-    visibility: visible;
-}
