@@ -1,4 +1,4 @@
-.modal {
+.modal{
     visibility: hidden;
     opacity: 0;
     position: fixed; /* Stay in place */
@@ -10,14 +10,14 @@
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    animation-name: fadeIn;
     transition: all 0.2s ease-in-out;
-    &.active {
+    &.active{
         visibility: visible;
         opacity: 1;
     }
-    &__content {
+    &__content{
         @include flexible(center, flex-start, column, nowrap);
+        position: relative;
         max-width: 500px;
         background-color: #FFFFFF;
         margin: auto;
@@ -26,7 +26,7 @@
         border-radius: 10px;
         width: 90%;
     }
-    &__close-btn {
+    &__close-btn{
         display: block;
         align-self: flex-end;
         color: $colorGray;
@@ -34,37 +34,83 @@
         font-weight: bold;
         transition: all .2s ease-in-out;
         &:hover,
-        &:focus {
-        color: #000;
+        &:focus{
+        color: #000000;
         text-decoration: none;
         cursor: pointer;
         }
     }
-    //&__input-container {
-    //    @include flexible(flex-start, flex-start, row-reverse, nowrap);
-    //}
-    &__title {
+    &__single-input-container{
         position: relative;
         width: 100%;
+    }
+    &__title{
+        width: 100%;
+        padding-left: 5px;
+        margin: 10px 0;
         font-size: 1.2rem;
         font-family: 'SF Pro Displkay Medium', sans-serif;
         color: $colorGrayDark;
+        &#title{
+            padding: 7px;
+        }
         &--input{
+            padding: 0;
             border: none;
             outline: none;
-            &::placeholder {
+            &::placeholder{
                 color: $colorGray;
             }
         }
     }
-    &__description {
-        position: relative;
+    &__save-title-btn,
+    &__discard-title-btn{
+        display: none;
+        position: absolute;
+        top: 98px;
+        height: 30px;
+        width: 30px;
+        border: 1px solid #c5c5c5;
+        border-radius: 3px;
+        background-color: #ffffff;
+        transition: all .2s ease-in-out;
+        &:hover,
+        &:focus{
+            outline: none;
+            background-color: #e1e1e1;
+        }
+        & svg{
+            height: 60%;
+            width: 60%;
+        }
+        &.active{
+            display: block;
+        }
+    }
+    &__save-title-btn{
+        right: 50px;
+        & svg{
+            margin-top: 5px;
+        }
+    }
+    &__discard-title-btn{
+        padding-top: 3px;
+        right: 16px;
+    }
+    &__save-title-btn:hover,
+    &__discard-title-btn:hover{
+        cursor: pointer;
+    }
+    &__description{
         width: 100%;
         padding: 5px;
-        margin-top: 10px;
+        margin: 10px 0;
         font-size: 1rem;
         font-family: 'SF Pro Displkay Regular', sans-serif;
         color: $colorGrayDark;
+        &#description{
+            margin-top: 0;
+        }
         &--input {
             border: 1px solid $colorGray;
             border-radius: 5px;
@@ -74,31 +120,76 @@
                 color: $colorGray;
             }
         }
+        &-edit-btn-container{
+            @include flexible(flex-start, flex-start, row, nowrap);
+            margin-top: 5px;
+        }
+        &-save-btn{
+            @include btn(100px, 5px, $colorGreen, #b4dfd0);
+            margin-right: 5px;
+        }
+        &-discard-btn{
+            @include btn(100px, 5px, #e1e1e1, $colorGrayLight);
+        }
+        &-save-btn,
+        &-discard-btn{
+            display: none;
+        }
+        &-save-btn.active,
+        &-discard-btn.active{
+            display: block;
+        }
     }
-    &__error-message::before {
-        content: "This field is requred";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: block;
-        height: .7rem;
-        width: 100%;
-        font-size: .7rem;
-        color: #eb7b7b;
-    }
-    &__save-btn {
+    &__save-btn{
        @include btn(30%, 5px, $colorGreen, #b4dfd0);
        margin-top: 10px;
     }
-}
-
-#edit-card-modal {
-    & .modal__title--input {
-        display: none;
+    &__element-hover{
+        border-radius: 5px;
+        transition: all .2s ease-in-out;
+        &:hover{
+            background-color: #e1e1e1;
+            cursor: text;
+        }
     }
-    & .modal__description--input {
+}
+#edit-card-modal{
+    & .modal__title,
+    & .modal__description{
         display: none;
+        &.active{
+            display: block;
+        }
+        &--input{
+            display: none;
+            &.active{
+                display: block;
+                padding: 5px;
+                border: 2px solid #8bb2ea;
+            }
+        }
+    }
+}
+.error-message {
+    display: none;
+    position: absolute;
+    height: 1em;
+    width: max-content;
+    font-size: 0.7rem;
+    color: #eb7b7b;
+    &--title{
+        top: 85px;
+    }
+    &--title-edit{
+        top: 99px;
+    }
+    &--description{
+        top: 300px;
+    }
+    &--description-edit{
+        top: 300px;
+    }
+    &.active{
+        display: block;
     }
 }
