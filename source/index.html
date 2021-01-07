@@ -10,11 +10,14 @@
 </head>
 <body>
     <div class="wrap">
+
         <header class="header">
             <h1 class="header__title">Kanban Board</h1>
             <p class="header__subtitle">A board to keep track of your tasks</p>
         </header>
+
         <main class="board">
+
             <section class="board__column board__column--to-do" data-column="toDo">
                     <div class="board__header">
                         <h2 class="board__header-title board__header-title--to-do">To do</h2>
@@ -32,6 +35,7 @@
                     </div>
                 <button class="board__add-new-btn">+ Add new</button>
             </section>
+
             <section class="board__column board__column--in-progress" data-column="inProgress">
                 <div class="board__header">
                     <h2 class="board__header-title board__header-title--in-progress">In progress</h2>
@@ -49,30 +53,55 @@
                 <div class="board__cards-container" data-column="inProgress">
                 </div>
         </section>
+
             <div class="modal" id="add-card-modal">
                 <div class="modal__content">
                     <span class="modal__close-btn">&times;</span>
                     <input class="modal__title modal__title--input" data-input_type="title" type="text" maxlength="24"
                            placeholder="Enter card title">
-                    <span class="error-message" data-input_type="title">This field is requred</span>
+                    <span class="error-message error-message--title" data-input_type="title">This field is
+                        required</span>
                     <textarea class="modal__description modal__description--input" data-input_type="description" name="" rows="10"
                               maxlength="1000" placeholder="Enter card description"></textarea>
-                    <span class="error-message" data-input_type="description">This field is requred</span>
+                    <span class="error-message error-message--description" data-input_type="description">This field is
+                        required</span>
                     <button class="modal__save-btn">Save</button>
                 </div>
             </div>
-            <div class="modal" id="edit-card-modal">
+
+            <div class="modal" id="edit-card-modal" data-edit_card_id="">
                 <div class="modal__content">
                     <span class="modal__close-btn">&times;</span>
-                    <input class="modal__title modal__title--input" data-input_type="title" type="text" maxlength="24"
+                    <input class="modal__title modal__title--input" data-input_type="title" type="text"
+                           maxlength="24"
                            placeholder="Change card title">
-                    <span class="error-message">This field is requred</span>
-                    <p class="modal__title" id="title">Title</p>
+                    <button class="modal__save-title-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.369 78.369">
+                            <defs/>
+                            <path d="M78.049 19.015L29.458 67.606a1.094 1.094 0 01-1.548 0L.32 40.015a1.094 1.094 0 010-1.547l6.704-6.704a1.095 1.095 0 011.548 0l20.113 20.112 41.113-41.113a1.095 1.095 0 011.548 0l6.703 6.704a1.094 1.094 0 010 1.548z"/>
+                        </svg>
+                    </button>
+                    <button class="modal__discard-title-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298.667 298.667">
+                            <defs/>
+                            <path d="M298.667 30.187L268.48 0 149.333 119.147 30.187 0 0 30.187l119.147 119.146L0 268.48l30.187 30.187L149.333 179.52 268.48 298.667l30.187-30.187L179.52 149.333z"/>
+                        </svg>
+                    </button>
+                    <span class="error-message error-message--title-edit" data-input_type="title">This field is can't
+                        be empty</span>
+                    <p class="modal__title modal__title--activate-input modal__element-hover active" id="title">Title
+                    </p>
                     <textarea class="modal__description modal__description--input" data-input_type="description"
                               name="" rows="10"
                               maxlength="1000" placeholder="Change card description"></textarea>
-                    <span class="error-message">This field is requred</span>
-                    <p class="modal__description" id="description">Description</p>
+                    <span class="error-message error-message--description-edit" data-input_type="description">This field is
+                        required</span>
+                    <div class="modal__description-edit-btn-container">
+                        <button class="modal__description-save-btn">Save</button>
+                        <button class="modal__description-discard-btn">Discard</button>
+                    </div>
+                    <p class="modal__description modal__description--activate-input modal__element-hover active"
+                       id="description">Description</p>
                 </div>
             </div>
         </main>
