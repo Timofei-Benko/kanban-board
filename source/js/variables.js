@@ -6,8 +6,19 @@ const moveIcon = `<svg class="board__card-move-btn-icon xmlns="http://www.w3.org
 </svg>`
 
 export const variables = {
+    editModal: document.body.querySelector('#edit-card-modal'),
+    titleInputEM: document.body.querySelector('#edit-card-modal .modal__title--input'),
+    descriptionInputEM: document.body.querySelector('#edit-card-modal .modal__description--input'),
+    titleEM: document.body.querySelector('#title'),
+    descriptionEM: document.body.querySelector('#description'),
+    saveTitleBtn: document.body.querySelector('.modal__save-title-btn'),
+    discardTitleBtn: document.body.querySelector('.modal__discard-title-btn'),
+    saveDescriptionBtn: document.body.querySelector('.modal__description-save-btn'),
+    discardDescriptionBtn: document.body.querySelector('.modal__description-discard-btn'),
+
     removeIcon: removeIcon,
     moveIcon: moveIcon,
+
     getCard(cardObject) {
         return `<div class="board__card" data-card="card" data-card_id=${cardObject.id}>
                     <h3 class="board__card-title">${cardObject.title}</h3>
