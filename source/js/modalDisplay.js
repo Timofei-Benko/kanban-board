@@ -18,8 +18,8 @@ for (let i = 0; i < cardsContainers.length; i++) {
     cardsContainers[i].addEventListener('click', event => {
         if (event.target.classList.contains('board__card-remove-btn-icon') ||
             event.target.closest('.board__card-remove-btn-icon') ||
-            event.target.classList.contains('board__card-move-btn-icon' ||
-            event.target.closest('.board__card-move-btn-icon'))) {
+            event.target.classList.contains('board__card-move-btn-icon') ||
+            event.target.closest('.board__card-move-btn-icon')) {
             return
         } else if (event.target.classList.contains('.board__card') ||
             event.target.closest('.board__card')) {
