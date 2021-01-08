@@ -10,7 +10,6 @@ for (let i = 0; i < clearBtns.length; i++) {
     clearBtns[i].addEventListener('click', event => {
         let column = event.target.closest('button[data-column]').dataset.column;
         methods.deleteAllCards(column);
-
     })    
 }
 
