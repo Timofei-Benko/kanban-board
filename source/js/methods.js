@@ -86,6 +86,12 @@ export class Methods {
             toDoStorage.push(cardObject);
             localStorage.setItem('toDo', JSON.stringify(toDoStorage));
         }
+
+        if (column === 'inProgress') {
+            let inProgressStorage = JSON.parse(localStorage.getItem('inProgress'));
+            inProgressStorage.push(cardObject);
+            localStorage.setItem('inProgress', JSON.stringify(inProgressStorage));
+        }
     };
 
     updateLocalStorage(column, id, fieldToUpdate, value) {

@@ -548,6 +548,12 @@ var Methods = /*#__PURE__*/function () {
         toDoStorage.push(cardObject);
         localStorage.setItem('toDo', JSON.stringify(toDoStorage));
       }
+
+      if (column === 'inProgress') {
+        var inProgressStorage = JSON.parse(localStorage.getItem('inProgress'));
+        inProgressStorage.push(cardObject);
+        localStorage.setItem('inProgress', JSON.stringify(inProgressStorage));
+      }
     }
   }, {
     key: "updateLocalStorage",
@@ -822,7 +828,7 @@ addCardBtn.addEventListener('click', function () {
 
 for (var i = 0; i < cardsContainers.length; i++) {
   cardsContainers[i].addEventListener('click', function (event) {
-    if (event.target.classList.contains('board__card-remove-btn-icon') || event.target.closest('.board__card-remove-btn-icon') || event.target.classList.contains('board__card-move-btn-icon' || event.target.closest('.board__card-move-btn-icon'))) {
+    if (event.target.classList.contains('board__card-remove-btn-icon') || event.target.closest('.board__card-remove-btn-icon') || event.target.classList.contains('board__card-move-btn-icon') || event.target.closest('.board__card-move-btn-icon')) {
       return;
     } else if (event.target.classList.contains('.board__card') || event.target.closest('.board__card')) {
       var card = event.target.closest('.board__card'),
@@ -865,6 +871,36 @@ var _loop = function _loop(_i) {
 for (var _i = 0; _i < modalWindows.length; _i++) {
   _loop(_i);
 }
+},{"./variables.js":"js/variables.js","./methods.js":"js/methods.js"}],"js/moveCard.js":[function(require,module,exports) {
+'use strict';
+
+var _variables = require("./variables.js");
+
+var _methods = require("./methods.js");
+
+var methods = new _methods.Methods();
+var board = document.body.querySelector('.board'),
+    columns = Array.from(board.children);
+board.addEventListener('click', function (event) {
+  if (event.target.classList.contains('.board__card-move-btn-icon') || event.target.closest('.board__card-move-btn-icon')) {
+    var cardUI = event.target.closest('.board__card');
+    var cardId = cardUI.dataset.card_id;
+    var columnString = cardUI.parentElement.dataset.column;
+    var card = methods.getCardFromLocalStorage(columnString, cardId);
+    var nextColumn;
+
+    for (var i = 0; i < columns.length; i++) {
+      if (columnString === columns[i].dataset.column) {
+        columns.indexOf(columns[i]) === columns.length - 1 ? nextColumn = columns[0] : nextColumn = columns[columns.indexOf(columns[i]) + 1];
+      }
+    }
+
+    nextColumn.innerHTML += _variables.variables.getCard(card);
+    cardUI.remove();
+    methods.putInLocalStorage(card, nextColumn.dataset.column);
+    methods.removeFromLocalStorage(columnString, cardId);
+  }
+});
 },{"./variables.js":"js/variables.js","./methods.js":"js/methods.js"}],"js/main.js":[function(require,module,exports) {
 'use strict';
 
@@ -881,7 +917,9 @@ require("./pageLoad.js");
 require("./keyUpHideError.js");
 
 require("./modalDisplay.js");
-},{"./clamp.js":"js/clamp.js","./addCard.js":"js/addCard.js","./editCard.js":"js/editCard.js","./deleteCards.js":"js/deleteCards.js","./pageLoad.js":"js/pageLoad.js","./keyUpHideError.js":"js/keyUpHideError.js","./modalDisplay.js":"js/modalDisplay.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+require("./moveCard.js");
+},{"./clamp.js":"js/clamp.js","./addCard.js":"js/addCard.js","./editCard.js":"js/editCard.js","./deleteCards.js":"js/deleteCards.js","./pageLoad.js":"js/pageLoad.js","./keyUpHideError.js":"js/keyUpHideError.js","./modalDisplay.js":"js/modalDisplay.js","./moveCard.js":"js/moveCard.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
