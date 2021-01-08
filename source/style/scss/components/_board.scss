@@ -29,6 +29,9 @@
             &--in-progress{
                 @include label(1rem, $colorLavender, .7em);
             }
+            &--done{
+                @include label(1rem, $colorGreen, .7em);
+            }
         }
         &-counter{
             width: max-content;
@@ -39,6 +42,9 @@
             }
             &--in-progress{
                 @extend .board__header-title--in-progress;
+            }
+            &--done{
+                @extend .board__header-title--done;
             }
         }
         &-clear-btn{

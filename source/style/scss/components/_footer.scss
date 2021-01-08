@@ -1,0 +1,10 @@
+.footer{
+    @include flexible(center, center, column, nowrap);
+    margin-top: .3rem;
+    &__copyright{
+      color: $colorGray;
+    }
+    &__github-link{
+      color: $colorGrayDark;
+    }
+}
