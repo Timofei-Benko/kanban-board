@@ -20,6 +20,11 @@ window.addEventListener('load', () => {
     }
     if (!localStorage.getItem('inProgress')) {
         localStorage.setItem('inProgress', JSON.stringify([]));
+    } else {
+        let inProgress = JSON.parse(localStorage.getItem('inProgress'));
+        inProgress.forEach(cardObject => {
+            document.querySelector('div[data-column="inProgress"]').innerHTML += variables.getCard(cardObject)
+        });
     }
     if (!localStorage.getItem('done')) {
         localStorage.setItem('done', JSON.stringify([]));

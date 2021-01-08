@@ -10,18 +10,8 @@ export class Methods {
         })
     };
 
-    getCards(column) {
-        if (column === 'toDo') {
-            return document.body.querySelector('div[data-column="toDo"]')
-                                .querySelectorAll('.board__card');
-        } else if (column === 'inProgress') {
-            return document.body.querySelector('div[data-column="inProgress"]')
-                                .querySelectorAll('.board__card');
-        } else if (column === 'done') {
-            return document.body.querySelector('div[data-column="done"]')
-                                .querySelectorAll('.board__card');
-        }
-    }
+    getCards = (column) => document.body.querySelector(`div[data-column=${column}]`)
+                                        .querySelectorAll('.board__card');
 
     countCards() {
         let columns = document.body.querySelectorAll('.board__cards-container[data-column]')
@@ -44,16 +34,15 @@ export class Methods {
     };
 
     deleteAllCards(column) {
-        if (column === 'toDo') {
-            let cards = this.getCards('toDo');
+            let cards = this.getCards(column);
 
             for (let i = 0; i < cards.length; i++) {
-                this.removeFromLocalStorage('toDo', cards[i].dataset.card_id);
+                this.removeFromLocalStorage(column, cards[i].dataset.card_id);
             }
 
-            let cardContainer = document.body.querySelector('div[data-column="toDo"]');
+            let cardContainer = document.body.querySelector(`div[data-column=${column}]`);
             cardContainer.innerHTML = '';
-        }
+
         this.countCards();
     };
 
@@ -81,46 +70,32 @@ export class Methods {
     generateID = () => `c_${Date.now()}`;
 
     putInLocalStorage(cardObject, column) {
-        if (column === 'toDo') {
-            let toDoStorage = JSON.parse(localStorage.getItem('toDo'));
-            toDoStorage.push(cardObject);
-            localStorage.setItem('toDo', JSON.stringify(toDoStorage));
-        }
-
-        if (column === 'inProgress') {
-            let inProgressStorage = JSON.parse(localStorage.getItem('inProgress'));
-            inProgressStorage.push(cardObject);
-            localStorage.setItem('inProgress', JSON.stringify(inProgressStorage));
-        }
+        let storage = JSON.parse(localStorage.getItem(column));
+        storage.push(cardObject);
+            localStorage.setItem(column, JSON.stringify(storage));
     };
 
     updateLocalStorage(column, id, fieldToUpdate, value) {
-        if (column === 'toDo') {
-            let toDoStorage = JSON.parse(localStorage.getItem('toDo'));
-            let card = toDoStorage.find(card => card.id === id);
-            card[`${fieldToUpdate}`] = value;
-            toDoStorage.splice(toDoStorage.indexOf(card), 1, card);
-            localStorage.setItem('toDo', JSON.stringify(toDoStorage));
-        }
+        let storage = JSON.parse(localStorage.getItem(column));
+        let card = storage.find(card => card.id === id);
+        card[`${fieldToUpdate}`] = value;
+        storage.splice(storage.indexOf(card), 1, card);
+        localStorage.setItem(column, JSON.stringify(storage));
     }
 
     removeFromLocalStorage(column, id) {
-        if (column === 'toDo') {
-            let toDoStorage = JSON.parse(localStorage.getItem('toDo'));
-            toDoStorage.forEach(card => {
-                if (card.id === id) {
-                    toDoStorage.splice(toDoStorage.indexOf(card), 1);
-                }
-            })
-            localStorage.setItem('toDo', JSON.stringify(toDoStorage));
-        }
+        let storage = JSON.parse(localStorage.getItem(column));
+        storage.forEach(card => {
+            if (card.id === id) {
+                storage.splice(storage.indexOf(card), 1);
+            }
+        })
+        localStorage.setItem(column, JSON.stringify(storage));
     };
 
     getCardFromLocalStorage(column, id) {
-        if (column === 'toDo') {
-            let toDoStorage = JSON.parse(localStorage.getItem('toDo'));
-            return toDoStorage.find(card => card.id === id)
-        }
+        let storage = JSON.parse(localStorage.getItem(column));
+        return storage.find(card => card.id === id)
     };
 
     showErrorMessage = (...inputs) => inputs.forEach((
@@ -132,6 +107,7 @@ export class Methods {
                 errorMessage.classList.add('active');
             }
         ));
+
     hideErrorMessage = (...inputs) => inputs.forEach((
             input => {
                 let modal = input.parentElement,
@@ -177,5 +153,6 @@ export class Methods {
 }
 
 // TODO:
-//  - move card functionality
+//  - forbit editing in done
+//  - carousel
 //  - unify show/hide error message methods

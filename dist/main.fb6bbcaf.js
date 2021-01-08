@@ -423,6 +423,10 @@ var Methods = /*#__PURE__*/function () {
   function Methods() {
     _classCallCheck(this, Methods);
 
+    _defineProperty(this, "getCards", function (column) {
+      return document.body.querySelector("div[data-column=".concat(column, "]")).querySelectorAll('.board__card');
+    });
+
     _defineProperty(this, "generateID", function () {
       return "c_".concat(Date.now());
     });
@@ -466,17 +470,6 @@ var Methods = /*#__PURE__*/function () {
       });
     }
   }, {
-    key: "getCards",
-    value: function getCards(column) {
-      if (column === 'toDo') {
-        return document.body.querySelector('div[data-column="toDo"]').querySelectorAll('.board__card');
-      } else if (column === 'inProgress') {
-        return document.body.querySelector('div[data-column="inProgress"]').querySelectorAll('.board__card');
-      } else if (column === 'done') {
-        return document.body.querySelector('div[data-column="done"]').querySelectorAll('.board__card');
-      }
-    }
-  }, {
     key: "countCards",
     value: function countCards() {
       var columns = document.body.querySelectorAll('.board__cards-container[data-column]');
@@ -500,17 +493,14 @@ var Methods = /*#__PURE__*/function () {
   }, {
     key: "deleteAllCards",
     value: function deleteAllCards(column) {
-      if (column === 'toDo') {
-        var cards = this.getCards('toDo');
+      var cards = this.getCards(column);
 
-        for (var i = 0; i < cards.length; i++) {
-          this.removeFromLocalStorage('toDo', cards[i].dataset.card_id);
-        }
-
-        var cardContainer = document.body.querySelector('div[data-column="toDo"]');
-        cardContainer.innerHTML = '';
+      for (var i = 0; i < cards.length; i++) {
+        this.removeFromLocalStorage(column, cards[i].dataset.card_id);
       }
 
+      var cardContainer = document.body.querySelector("div[data-column=".concat(column, "]"));
+      cardContainer.innerHTML = '';
       this.countCards();
     }
   }, {
@@ -543,53 +533,39 @@ var Methods = /*#__PURE__*/function () {
   }, {
     key: "putInLocalStorage",
     value: function putInLocalStorage(cardObject, column) {
-      if (column === 'toDo') {
-        var toDoStorage = JSON.parse(localStorage.getItem('toDo'));
-        toDoStorage.push(cardObject);
-        localStorage.setItem('toDo', JSON.stringify(toDoStorage));
-      }
-
-      if (column === 'inProgress') {
-        var inProgressStorage = JSON.parse(localStorage.getItem('inProgress'));
-        inProgressStorage.push(cardObject);
-        localStorage.setItem('inProgress', JSON.stringify(inProgressStorage));
-      }
+      var storage = JSON.parse(localStorage.getItem(column));
+      storage.push(cardObject);
+      localStorage.setItem(column, JSON.stringify(storage));
     }
   }, {
     key: "updateLocalStorage",
     value: function updateLocalStorage(column, id, fieldToUpdate, value) {
-      if (column === 'toDo') {
-        var toDoStorage = JSON.parse(localStorage.getItem('toDo'));
-        var card = toDoStorage.find(function (card) {
-          return card.id === id;
-        });
-        card["".concat(fieldToUpdate)] = value;
-        toDoStorage.splice(toDoStorage.indexOf(card), 1, card);
-        localStorage.setItem('toDo', JSON.stringify(toDoStorage));
-      }
+      var storage = JSON.parse(localStorage.getItem(column));
+      var card = storage.find(function (card) {
+        return card.id === id;
+      });
+      card["".concat(fieldToUpdate)] = value;
+      storage.splice(storage.indexOf(card), 1, card);
+      localStorage.setItem(column, JSON.stringify(storage));
     }
   }, {
     key: "removeFromLocalStorage",
     value: function removeFromLocalStorage(column, id) {
-      if (column === 'toDo') {
-        var toDoStorage = JSON.parse(localStorage.getItem('toDo'));
-        toDoStorage.forEach(function (card) {
-          if (card.id === id) {
-            toDoStorage.splice(toDoStorage.indexOf(card), 1);
-          }
-        });
-        localStorage.setItem('toDo', JSON.stringify(toDoStorage));
-      }
+      var storage = JSON.parse(localStorage.getItem(column));
+      storage.forEach(function (card) {
+        if (card.id === id) {
+          storage.splice(storage.indexOf(card), 1);
+        }
+      });
+      localStorage.setItem(column, JSON.stringify(storage));
     }
   }, {
     key: "getCardFromLocalStorage",
     value: function getCardFromLocalStorage(column, id) {
-      if (column === 'toDo') {
-        var toDoStorage = JSON.parse(localStorage.getItem('toDo'));
-        return toDoStorage.find(function (card) {
-          return card.id === id;
-        });
-      }
+      var storage = JSON.parse(localStorage.getItem(column));
+      return storage.find(function (card) {
+        return card.id === id;
+      });
     }
   }, {
     key: "checkIfEmpty",
@@ -638,7 +614,8 @@ var Methods = /*#__PURE__*/function () {
 
   return Methods;
 }(); // TODO:
-//  - move card functionality
+//  - forbit editing in done
+//  - carousel
 //  - unify show/hide error message methods
 
 
@@ -783,6 +760,11 @@ window.addEventListener('load', function () {
 
   if (!localStorage.getItem('inProgress')) {
     localStorage.setItem('inProgress', JSON.stringify([]));
+  } else {
+    var inProgress = JSON.parse(localStorage.getItem('inProgress'));
+    inProgress.forEach(function (cardObject) {
+      document.querySelector('div[data-column="inProgress"]').innerHTML += _variables.variables.getCard(cardObject);
+    });
   }
 
   if (!localStorage.getItem('done')) {
@@ -880,13 +862,13 @@ var _methods = require("./methods.js");
 
 var methods = new _methods.Methods();
 var board = document.body.querySelector('.board'),
-    columns = Array.from(board.children);
+    columns = Array.from(document.body.querySelectorAll('.board__cards-container'));
 board.addEventListener('click', function (event) {
   if (event.target.classList.contains('.board__card-move-btn-icon') || event.target.closest('.board__card-move-btn-icon')) {
-    var cardUI = event.target.closest('.board__card');
-    var cardId = cardUI.dataset.card_id;
-    var columnString = cardUI.parentElement.dataset.column;
-    var card = methods.getCardFromLocalStorage(columnString, cardId);
+    var cardUI = event.target.closest('.board__card'),
+        cardId = cardUI.dataset.card_id,
+        columnString = cardUI.parentElement.dataset.column,
+        card = methods.getCardFromLocalStorage(columnString, cardId);
     var nextColumn;
 
     for (var i = 0; i < columns.length; i++) {
@@ -896,6 +878,7 @@ board.addEventListener('click', function (event) {
     }
 
     nextColumn.innerHTML += _variables.variables.getCard(card);
+    methods.clampText();
     cardUI.remove();
     methods.putInLocalStorage(card, nextColumn.dataset.column);
     methods.removeFromLocalStorage(columnString, cardId);
