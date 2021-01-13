@@ -5,6 +5,10 @@
         font-family: 'SF Compact Text Bold';
         font-size: 3rem;
         color: $colorGrayDark;
+
+        @include rwd(300) {
+            font-size: 2rem;
+        }
     }
     &__subtitle{
         margin: 0 0 2em 0;
