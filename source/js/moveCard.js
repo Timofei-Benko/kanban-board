@@ -5,12 +5,14 @@ import  { Methods } from "./methods.js";
 
 let methods = new Methods();
 
-const   board = document.body.querySelector('.board'),
-        columns = Array.from(document.body.querySelectorAll('.board__cards-container'));
+const   board = document.body.querySelector('.board__column-container'),
+        columns = Array.from(document.body.querySelectorAll('.board__cards-container')),
+        lastColumn = board.children[board.children.length - 1];
+
 
 board.addEventListener('click', event => {
-    if (event.target.classList.contains('.board__card-move-btn-icon')
-        || event.target.closest('.board__card-move-btn-icon')) {
+    if (event.target.classList.contains('.board__card-move-btn')
+        || event.target.closest('.board__card-move-btn')) {
         let  cardUI = event.target.closest('.board__card'),
              cardId = cardUI.dataset.card_id,
              columnString = cardUI.parentElement.dataset.column,
@@ -26,11 +28,18 @@ board.addEventListener('click', event => {
             }
         }
 
-        nextColumn.innerHTML += variables.getCard(card);
+        if (nextColumn.dataset.column === lastColumn.dataset.column) {
+            nextColumn.innerHTML += variables.getCard(card, true);
+        } else {
+            nextColumn.innerHTML += variables.getCard(card);
+        }
+
+
         methods.clampText();
         cardUI.remove();
         methods.putInLocalStorage(card, nextColumn.dataset.column);
         methods.removeFromLocalStorage(columnString, cardId);
+        methods.countCards();
     }
 })
 

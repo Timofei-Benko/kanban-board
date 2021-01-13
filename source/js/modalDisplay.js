@@ -16,10 +16,10 @@ addCardBtn.addEventListener('click', () => methods.toggle(addCardModal))
 
 for (let i = 0; i < cardsContainers.length; i++) {
     cardsContainers[i].addEventListener('click', event => {
-        if (event.target.classList.contains('board__card-remove-btn-icon') ||
-            event.target.closest('.board__card-remove-btn-icon') ||
-            event.target.classList.contains('board__card-move-btn-icon') ||
-            event.target.closest('.board__card-move-btn-icon')) {
+        if (event.target.classList.contains('board__card-remove-btn') ||
+            event.target.closest('.board__card-remove-btn') ||
+            event.target.classList.contains('board__card-move-btn') ||
+            event.target.closest('.board__card-move-btn')) {
             return
         } else if (event.target.classList.contains('.board__card') ||
             event.target.closest('.board__card')) {

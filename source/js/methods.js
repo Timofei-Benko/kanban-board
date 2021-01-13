@@ -147,12 +147,12 @@ export class Methods {
                     variables.discardDescriptionBtn
                 );
                 variables.descriptionInputEM.focus()
-            };
+            }
         })
-    }
+    };
 }
 
 // TODO:
-//  - forbit editing in done
+//  - figure out how to remove hover class in done
 //  - carousel
 //  - unify show/hide error message methods
