@@ -76,7 +76,7 @@
         height: 50px;
         border: 1px solid $colorGray;
         border-radius: 10px;
-        font-family: 'SF Pro Displkay Medium';
+        font-family: 'SF Pro Displkay Medium', sans-serif;
         transition: all .1s ease-in-out;
         &:hover, 
         &:focus{
@@ -88,7 +88,7 @@
     &__prev,
     &__next{
         position: fixed;
-        z-index: 99;
+        z-index: 5;
         top: 50%;
         height: 30px;
         width: 30px;
