@@ -28,26 +28,31 @@
     }
     &__card-remove-btn,
     &__card-move-btn{
-        width: 15%;
+        width: 20px;
+        height: 20px;
         background: transparent;
-        border: none;
+        border-radius: 50%;
+        border: 1px solid #d8d5d5;
+        transition: all .1s ease-in-out;
 
         &:hover,
         &:focus{
             outline: none;
+            border-color: $colorGray;
+            cursor: pointer;
+        }
+        &:hover svg,
+        &:focus svg{
+            fill: $colorGray;
+            cursor: pointer;
         }
     }
     &__card-remove-btn svg,
     &__card-move-btn svg{
-        width: 20px;
-        height: 20px;
+        width: 10px;
+        height: 10px;
         margin-top: 2px;
         fill: #d8d5d5;
         transition: all .1s ease-in-out;
-        &:hover,
-        &:focus {
-            fill: $colorGray;
-            cursor: pointer;
-        }
     }
 }
