@@ -28,6 +28,11 @@ window.addEventListener('load', () => {
     }
     if (!localStorage.getItem('done')) {
         localStorage.setItem('done', JSON.stringify([]));
+    } else {
+        let doneStorage = JSON.parse(localStorage.getItem('done'));
+        doneStorage.forEach(cardObject => {
+            document.querySelector('div[data-column="done"]').innerHTML += variables.getCard(cardObject, true)
+        });
     }
 
     methods.countCards();

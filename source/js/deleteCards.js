@@ -15,7 +15,7 @@ for (let i = 0; i < clearBtns.length; i++) {
 
 for (let i = 0; i < cards.length; i++) {
     cards[i].addEventListener ('click', event => {
-        if(event.target.closest('.board__card-remove-btn-icon')) {
+        if(event.target.closest('.board__card-remove-btn')) {
             let card = event.target.closest('.board__card');
             methods.deleteCard(card);
         }
