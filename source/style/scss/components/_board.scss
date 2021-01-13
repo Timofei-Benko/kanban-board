@@ -1,11 +1,16 @@
 .board{
-    @include flexible(center, flex-start, row, nowrap);
+    @include flexible(flex-start, flex-start, row, nowrap);
+    position: relative;
     width: 100%;
-    height: 75vh;
-    padding: 1em;
+    height: 100%;
+    padding: 1em 2em;
     border-radius: 10px;
-    background-color: #f1eeee;
     overflow-y: scroll;
+    background-color: #f1eeee;
+    &__column-container{
+        @include flexible(flex-start, flex-start, row, nowrap);
+        min-height: max-content;
+    }
     &__column{
         width: 100%;
         max-width: 300px;
@@ -79,5 +84,29 @@
             outline: none;
             cursor: pointer;
         }
+    }
+    &__prev,
+    &__next{
+        position: fixed;
+        z-index: 99;
+        top: 50%;
+        height: 30px;
+        width: 30px;
+        background-color: transparent;
+        border: none;
+        @include rwd(800) {
+            display: none;
+        }
+        &:hover,
+        &:focus{
+            outline: none;
+            cursor: pointer;
+        }
+    }
+    &__prev{
+        left: 15px;
+    }
+    &__next{
+        right: 15px;
     }
 }
