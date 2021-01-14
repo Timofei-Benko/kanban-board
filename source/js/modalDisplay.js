@@ -10,7 +10,9 @@ const   editCardModal = document.body.querySelector('#edit-card-modal'),
         cardsContainers = document.body.querySelectorAll('.board__cards-container'),
         addCardBtn = document.body.querySelector('.board__add-new-btn'),
         columns = document.body.querySelectorAll('.board__column'),
-        lastColumn = columns[columns.length - 1].dataset.column;
+        lastColumn = columns[columns.length - 1].dataset.column,
+        tip = document.body.querySelector('.modal__header-tip-copy');
+
 
 // Open modal window
 
@@ -30,12 +32,12 @@ for (let i = 0; i < cardsContainers.length; i++) {
             if (column === lastColumn) {
                 variables.titleEM.classList.remove('modal__element-hover');
                 variables.descriptionEM.classList.remove('modal__element-hover');
+                tip.innerHTML = "you can't edit cards that are in done :("
             } else if (column !== lastColumn &&
                        !variables.titleEM.classList.contains('modal__element-hover') ||
                        !variables.descriptionEM.classList.contains('modal__element-hover')){
                 variables.titleEM.classList.add('modal__element-hover');
                 variables.descriptionEM.classList.add('modal__element-hover')
-
             }
 
             let card = event.target.closest('.board__card'),
