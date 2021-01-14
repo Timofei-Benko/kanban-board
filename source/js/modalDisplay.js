@@ -59,7 +59,7 @@ for (let i = 0; i < modalWindows.length; i++) {
         descriptionInput = modalWindows[i].querySelector('textarea[data-input_type="description"]');
 
     modalWindows[i].addEventListener('click', event => {
-        if (event.target.classList.contains('modal__close-btn')) {
+        if (event.target.classList.contains('modal__header-close-btn')) {
             methods.toggle(modalWindows[i]);
 
 
