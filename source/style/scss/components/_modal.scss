@@ -26,18 +26,29 @@
         border-radius: 10px;
         width: 90%;
     }
-    &__close-btn{
-        display: block;
-        align-self: flex-end;
-        color: $colorGray;
-        font-size: 2rem;
-        font-weight: bold;
-        transition: all .2s ease-in-out;
-        &:hover,
-        &:focus{
-        color: #000000;
-        text-decoration: none;
-        cursor: pointer;
+    &__header{
+        @include flexible(space-between, flex-start, row, nowrap);
+        width: 100%;
+        margin-left: 7px;
+        font-size: .7rem;
+        &-tip{
+            align-self: center;
+        }
+        &-tip-title{
+            font-family: 'SF Pro Displkay Medium', sans-serif;
+        }
+        &-close-btn{
+            display: block;
+            color: $colorGray;
+            font-size: 2rem;
+            font-weight: bold;
+            transition: all .2s ease-in-out;
+            &:hover,
+            &:focus{
+                color: #000000;
+                text-decoration: none;
+                cursor: pointer;
+            }
         }
     }
     &__single-input-container{
