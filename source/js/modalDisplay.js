@@ -13,7 +13,6 @@ const   editCardModal = document.body.querySelector('#edit-card-modal'),
         lastColumn = columns[columns.length - 1].dataset.column,
         tip = document.body.querySelector('.modal__header-tip-copy');
 
-
 // Open modal window
 
 addCardBtn.addEventListener('click', () => methods.toggle(addCardModal))
@@ -64,7 +63,6 @@ for (let i = 0; i < modalWindows.length; i++) {
         if (event.target.classList.contains('modal__header-close-btn')) {
             methods.toggle(modalWindows[i]);
 
-
             setTimeout(() => {
 
                 if (modalWindows[i].id === 'edit-card-modal') {
@@ -82,6 +80,3 @@ for (let i = 0; i < modalWindows.length; i++) {
         }
     })
 }
-
-
-
