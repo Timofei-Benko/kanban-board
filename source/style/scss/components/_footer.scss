@@ -1,6 +1,7 @@
 .footer{
     @include flexible(center, center, column, nowrap);
     margin-top: .3rem;
+    font-size: .5rem;
     &__copyright{
       color: $colorGray;
     }
