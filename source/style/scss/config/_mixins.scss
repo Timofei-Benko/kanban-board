@@ -11,7 +11,7 @@
 // Labels
 
 @mixin label($font-size, $color, $padding) {
-    font-family: 'SF Pro Displkay Medium';
+    font-family: 'SF Pro Displkay Medium', sans-serif;
     font-size: $font-size;
     background-color: $color;
     border-radius: 10px;
@@ -24,7 +24,7 @@
 @mixin btn ($width, $padding, $color, $hover-color) {
     width: $width;
     padding: $padding;
-    font-family: 'SF Pro Displkay Medium';
+    font-family: 'SF Pro Displkay Medium', sans-serif;
     font-size: 1rem;
     background-color: $color;
     border: none;
