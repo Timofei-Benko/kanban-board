@@ -95,7 +95,14 @@
 
         <div class="modal" id="add-card-modal">
             <div class="modal__content">
-                <span class="modal__close-btn">&times;</span>
+                <div class="modal__header">
+                    <span class="modal__header-tip">
+                        <span class="modal__header-tip-title">Tip:&nbsp;</span>
+                        <span class="modal__header-tip-copy">the title can't be longer than 24 characters!</span>
+                    </span>
+                    <span class="modal__header-close-btn">&times;</span>
+                </div>
+
                 <input class="modal__title modal__title--input" data-input_type="title" type="text" maxlength="24"
                        placeholder="Enter card title">
                 <span class="error-message error-message--title" data-input_type="title">This field is
