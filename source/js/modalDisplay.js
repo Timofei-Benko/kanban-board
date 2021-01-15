@@ -31,12 +31,15 @@ for (let i = 0; i < cardsContainers.length; i++) {
             if (column === lastColumn) {
                 variables.titleEM.classList.remove('modal__element-hover');
                 variables.descriptionEM.classList.remove('modal__element-hover');
-                tip.innerHTML = "you can't edit cards that are in done :("
+
+                tip.innerHTML = "you can't edit cards that are in done :(";
             } else if (column !== lastColumn &&
                        !variables.titleEM.classList.contains('modal__element-hover') ||
                        !variables.descriptionEM.classList.contains('modal__element-hover')){
                 variables.titleEM.classList.add('modal__element-hover');
                 variables.descriptionEM.classList.add('modal__element-hover')
+
+                tip.innerHTML = "you can edit cards by double clicking the text!"
             }
 
             let card = event.target.closest('.board__card'),

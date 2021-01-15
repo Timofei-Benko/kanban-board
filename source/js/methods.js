@@ -153,6 +153,4 @@ export class Methods {
 }
 
 // TODO:
-//  - figure out how to remove hover class in done
-//  - carousel
 //  - unify show/hide error message methods
