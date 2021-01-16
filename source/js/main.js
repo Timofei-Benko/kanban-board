@@ -8,4 +8,5 @@ import './pageLoad.js';
 import './keyUpHideError.js';
 import './modalDisplay.js';
 import './moveCard.js';
-import './slider.js'
+import './slider.js';
+import './publishToGHpages.js';
