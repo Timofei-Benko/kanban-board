@@ -11,7 +11,7 @@ const   editCardModal = document.body.querySelector('#edit-card-modal'),
         addCardBtn = document.body.querySelector('.board__add-new-btn'),
         columns = document.body.querySelectorAll('.board__column'),
         lastColumn = columns[columns.length - 1].dataset.column,
-        tip = document.body.querySelector('.modal__header-tip-copy');
+        tip = document.body.querySelector('#edit-card-modal .modal__header-tip-copy');
 
 // Open modal window
 
@@ -20,6 +20,9 @@ addCardBtn.addEventListener('click', () => methods.toggle(addCardModal))
 for (let i = 0; i < cardsContainers.length; i++) {
     cardsContainers[i].addEventListener('click', event => {
         let column = event.target.closest('div[data-column]').dataset.column
+
+        tip.innerHTML = "you can edit cards by double clicking the text!"
+
         if (event.target.classList.contains('board__card-remove-btn') ||
             event.target.closest('.board__card-remove-btn') ||
             event.target.classList.contains('board__card-move-btn') ||
@@ -38,8 +41,6 @@ for (let i = 0; i < cardsContainers.length; i++) {
                        !variables.descriptionEM.classList.contains('modal__element-hover')){
                 variables.titleEM.classList.add('modal__element-hover');
                 variables.descriptionEM.classList.add('modal__element-hover')
-
-                tip.innerHTML = "you can edit cards by double clicking the text!"
             }
 
             let card = event.target.closest('.board__card'),
