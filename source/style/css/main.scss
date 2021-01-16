@@ -1,0 +1,11 @@
+@import '../scss/config/normalize';
+@import '../scss/config/variables';
+@import '../scss/config/mixins';
+@import '../scss/config/fonts';
+@import '../scss/config/baseLayout';
+
+@import '../scss/components/header';
+@import '../scss/components/board';
+@import '../scss/components/card';
+@import '../scss/components/footer';
+@import '../scss/components/modal';

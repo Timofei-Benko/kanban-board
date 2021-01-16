@@ -4,11 +4,10 @@
         margin: 0 5px 0 0;
         font-family: 'SF Compact Text Bold', sans-serif;
         color: $colorGrayDark;
-
         @include rwd(300){
             font-size: 2rem;
         }
-        @include  rwd(500){
+        @include rwd(500){
             font-size: 3rem;
         }
     }
