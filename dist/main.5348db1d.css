@@ -355,19 +355,19 @@ template {
 
 @font-face {
   font-family: "SF Compact Text Bold";
-  src: url("./../../fonts/SF-Compact-Text-Bold.otf");
+  src: url("/SF-Compact-Text-Bold.a923d1e5.otf");
 }
 @font-face {
   font-family: "SF Pro Displkay Regular";
-  src: url("./../../fonts/SF-Pro-Display-Regular.otf");
+  src: url("/SF-Pro-Display-Regular.19001862.otf");
 }
 @font-face {
   font-family: "SF Pro Displkay Medium";
-  src: url("./../../fonts/SF-Pro-Display-Medium.otf");
+  src: url("/SF-Pro-Display-Medium.396522b8.otf");
 }
 @font-face {
   font-family: "SF Pro Displkay Semibold";
-  src: url("./../../fonts/SF-Pro-Display-Semibold.otf");
+  src: url("/SF-Pro-Display-Semibold.80de32cc.otf");
 }
 html {
   font-family: "SF Pro Displkay Regular";
@@ -886,4 +886,7 @@ body {
   display: block;
 }
 
-/*# sourceMappingURL=main.css.map */
+
+
+
+/*# sourceMappingURL=/main.5348db1d.css.map */
